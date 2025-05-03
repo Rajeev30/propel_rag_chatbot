@@ -41,7 +41,7 @@ async def log_requests(request: Request, call_next):
         return response
     except Exception as e:
         process_time = time.time() - start_time
-        logger.error(f"Request failed: {request.method} {request.url.path} - Time: {process_time:.3f}s - Error: {str(e)}")
+        logger.exception(f"Request failed: {request.method} {request.url.path} - Time: {process_time:.3f}s")
         raise
 
 # CORS (adjust origins in production)
