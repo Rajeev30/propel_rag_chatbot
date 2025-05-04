@@ -71,20 +71,28 @@ def health_check():
     """Simple health check endpoint that always returns 200 OK"""
     return {"status": "healthy", "message": "API is running"}
 
+from fastapi import UploadFile, File
+
 @app.post("/process_document")
-def process_document_endpoint(req: ProcessRequest):
+async def process_document_endpoint(file: UploadFile = File(...)):
     try:
-        logger.info(f"Processing document request: {req.document_path}")
+        logger.info(f"Uploaded file: {file.filename}")
+        
+        # Save the file temporarily
+        file_location = f"/tmp/{file.filename}"
+        with open(file_location, "wb") as f:
+            contents = await file.read()
+            f.write(contents)
+        
+        # Call your process_document function with saved file path
         result = process_document(
-            document_path=req.document_path,
-            vector_db_dir=req.vector_db_dir,
-            content_dir=req.content_dir
+            document_path=file_location,
+            vector_db_dir="faiss_index",
+            content_dir="content"
         )
-        logger.info(f"Document processed successfully: {req.document_path}")
+
+        logger.info(f"Document processed successfully: {file.filename}")
         return {"status": "processed"}
-    except FileNotFoundError as e:
-        logger.error(f"File not found: {req.document_path}")
-        raise HTTPException(status_code=404, detail=f"File not found: {req.document_path}")
     except Exception as e:
         logger.error(f"Error processing document: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))
