@@ -2,13 +2,12 @@
 import os
 from dotenv import load_dotenv
 
-# Load .env into os.environ (does not override existing vars by default)
 load_dotenv()
 
-from typing import Any, Dict, List
 import logging
 import time
-from fastapi import FastAPI, HTTPException, Request, Response
+from typing import Any, Dict, List
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from duckduckgo_search import DDGS
@@ -22,18 +21,16 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Ensure the key is now available
+# Check for required environment variable
 if not os.getenv("OPENAI_API_KEY"):
     raise RuntimeError("⚠️ OPENAI_API_KEY not set. Please define it in your .env file.")
 
 app = FastAPI(title="Document RAG Assistant API")
 
-# Add request logging middleware
 @app.middleware("http")
 async def log_requests(request: Request, call_next):
     start_time = time.time()
     logger.info(f"Request started: {request.method} {request.url.path}")
-    
     try:
         response = await call_next(request)
         process_time = time.time() - start_time
@@ -41,10 +38,10 @@ async def log_requests(request: Request, call_next):
         return response
     except Exception as e:
         process_time = time.time() - start_time
-        logger.exception(f"Request failed: {request.method} {request.url.path} - Time: {process_time:.3f}s")
+        logger.error(f"Request failed: {request.method} {request.url.path} - Time: {process_time:.3f}s - Error: {str(e)}")
         raise
 
-# CORS (adjust origins in production)
+# Allow CORS for testing
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -52,10 +49,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Request/response models
 class ProcessRequest(BaseModel):
     document_path: str
-    vector_db_dir: str = "faiss_index"
-    content_dir: str = "content"
 
 class ChatRequest(BaseModel):
     question: str
@@ -68,31 +64,17 @@ class WebSearchResponse(BaseModel):
 
 @app.get("/")
 def health_check():
-    """Simple health check endpoint that always returns 200 OK"""
     return {"status": "healthy", "message": "API is running"}
 
-from fastapi import UploadFile, File
-
 @app.post("/process_document")
-async def process_document_endpoint(file: UploadFile = File(...)):
+def process_document_endpoint(req: ProcessRequest):
     try:
-        logger.info(f"Uploaded file: {file.filename}")
-        
-        # Save the file temporarily
-        file_location = f"/tmp/{file.filename}"
-        with open(file_location, "wb") as f:
-            contents = await file.read()
-            f.write(contents)
-        
-        # Call your process_document function with saved file path
-        result = process_document(
-            document_path=file_location,
-            vector_db_dir="faiss_index",
-            content_dir="content"
-        )
-
-        logger.info(f"Document processed successfully: {file.filename}")
+        logger.info(f"Processing document request: {req.document_path}")
+        result = process_document(document_path=req.document_path)
         return {"status": "processed"}
+    except FileNotFoundError:
+        logger.error(f"File not found: {req.document_path}")
+        raise HTTPException(status_code=404, detail=f"File not found: {req.document_path}")
     except Exception as e:
         logger.error(f"Error processing document: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))
@@ -102,15 +84,11 @@ def chat_endpoint(req: ChatRequest):
     try:
         logger.info(f"Chat request received: {req.question[:50]}...")
         answer = build_rag_chain(req.question)
-        logger.info("Generated answer successfully")
         return {"answer": answer}
     except RuntimeError as e:
         if "Document not processed" in str(e):
-            logger.warning("Chat attempted before document processing")
             raise HTTPException(status_code=400, detail=str(e))
-        else:
-            logger.error(f"Runtime error in chat: {str(e)}")
-            raise HTTPException(status_code=500, detail=str(e))
+        raise HTTPException(status_code=500, detail=str(e))
     except Exception as e:
         logger.error(f"Error in chat: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))
@@ -121,9 +99,7 @@ def web_search_endpoint(req: ChatRequest):
         logger.info(f"Web search request: {req.question[:50]}...")
         ddgs = DDGS()
         results = ddgs.text(req.question, max_results=10)
-        results_list = list(results)  # Convert generator to list
-        logger.info(f"Web search completed with {len(results_list)} results")
-        return {"results": results_list}
+        return {"results": list(results)}
     except Exception as e:
         logger.error(f"Error in web search: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))

@@ -1,137 +1,130 @@
 import os
-from dotenv import load_dotenv
-
-# Load environment variables from .env (API keys, etc.)
-load_dotenv()
-
-# Set environment variable to fix OpenMP error
-os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
-
 import uuid
 import shutil
-from typing import List
-from langchain_community.vectorstores import FAISS
-from langchain.schema import Document
-from langchain_community.embeddings import OpenAIEmbeddings
-from langchain_core.output_parsers import StrOutputParser
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_openai import ChatOpenAI
 import logging
+from typing import List
+from dotenv import load_dotenv
 
-# Configure logging
-logging.basicConfig(level=logging.INFO, 
-                   format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.output_parsers import StrOutputParser
+from langchain.schema import Document
+from langchain_openai import ChatOpenAI
+from langchain_community.embeddings import OpenAIEmbeddings
+
+from pinecone import Pinecone, ServerlessSpec
+
+pc = Pinecone(api_key=os.getenv("pcsk_496rDQ_2AFKKJ9FEVZEuMKg1dHRtwpp2Vw7zUQet3HCaAyXRfQDYuW1eWynaJGSbwcK3zg"))
+index_name = "https://ragpropel-4ie225z.svc.aped-4627-b74a.pinecone.io" 
+
+# Create index if it doesn't exist
+if index_name not in pc.list_indexes().names():
+    pc.create_index(
+        name=index_name,
+        dimension=1536,  # match your embedding size
+        metric="cosine",  # or 'euclidean' or 'dotproduct' depending on use case
+        spec=ServerlessSpec(
+            cloud="aws",
+            region=os.getenv("PINECONE_REGION")  # e.g., "us-west-2"
+        )
+    )
+
+
+# Access the index
+index = pc.Index(index_name)
+
+# Load environment variables
+load_dotenv()
+
+# Logging setup
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-# Verify that the OpenAI API key is loaded
+# Check API key
 if not os.getenv("OPENAI_API_KEY"):
     raise RuntimeError("⚠️ OPENAI_API_KEY not set. Define it in your .env file.")
 
-# Global state for vectorstore and retriever
+
+index_name = os.getenv("PINECONE_INDEX_NAME")
+embedding_model = OpenAIEmbeddings()
 vectorstore = None
 retriever = None
 
 
-def process_document(
-    document_path: str,
-    vector_db_dir: str = "faiss_index",
-    content_dir: str = "content"
-):
-    """
-    - Extracts and partitions PDF content (text and tables).
-    - Summarizes each chunk via ChatOpenAI.
-    - Builds and persists a FAISS index locally.
-    - Initializes a retriever for later queries.
-    """
+def process_document(document_path: str, content_dir: str = "content") -> bool:
+    """Parse, summarize, and store document embeddings in Pinecone."""
     logger.info(f"Processing document: {document_path}")
-    # Clean and recreate content directory
+
     if os.path.exists(content_dir):
         shutil.rmtree(content_dir)
     os.makedirs(content_dir, exist_ok=True, mode=0o777)
 
-    try:
-        # Partition PDF into elements
-        from unstructured.partition.pdf import partition_pdf
-        logger.info(f"Partitioning PDF...")
-        elements = partition_pdf(
-            filename=document_path,
-            infer_table_structure=True,
-            strategy="auto",
-            extract_image_block_types=["Image"],
-            image_output_dir_path=content_dir,
-            chunking_strategy="by_title",
-            max_characters=4000,
-            combine_text_under_n_chars=2000,
+    from unstructured.partition.pdf import partition_pdf
+    logger.info("Partitioning PDF...")
+    elements = partition_pdf(
+        filename=document_path,
+        infer_table_structure=True,
+        strategy="auto",
+        extract_image_block_types=["Image"],
+        image_output_dir_path=content_dir,
+        chunking_strategy="by_title",
+        max_characters=4000,
+        combine_text_under_n_chars=2000,
+    )
+
+    logger.info(f"PDF partitioned into {len(elements)} elements.")
+    docs: List[Document] = []
+
+    for el in elements:
+        if hasattr(el, "text") and el.text:
+            content = el.text
+            prompt_txt = "Summarize this technical text focusing on key specifications:"
+        elif hasattr(el.metadata, "text_as_html") and el.metadata.text_as_html:
+            content = el.metadata.text_as_html
+            prompt_txt = "Explain this table's key data points and relationships:"
+        else:
+            continue
+
+        model = ChatOpenAI(model="gpt-3.5-turbo-0125")
+        prompt = ChatPromptTemplate.from_template(f"{prompt_txt}\n\n{{content}}")
+        chain = prompt | model | StrOutputParser()
+        summary = chain.invoke({"content": content})
+        text = summary if isinstance(summary, str) else summary.content
+
+        docs.append(
+            Document(
+                page_content=text.strip(),
+                metadata={"id": str(uuid.uuid4()), "type": el.__class__.__name__}
+            )
         )
-        logger.info(f"PDF partitioning complete. Found {len(elements)} elements.")
 
-        # Summarize and collect docs
-        docs: List[Document] = []
-        for el in elements:
-            # Determine content and prompt based on element type
-            if hasattr(el, "text") and el.text:
-                content = el.text
-                prompt_txt = "Summarize this technical text focusing on key specifications:"
-            elif hasattr(el.metadata, "text_as_html") and el.metadata.text_as_html:
-                content = el.metadata.text_as_html
-                prompt_txt = "Explain this table's key data points and relationships:"
-            else:
-                continue
+    if not docs:
+        raise ValueError("No content extracted to index.")
 
-            # Summarize via ChatOpenAI
-            model = ChatOpenAI(model="gpt-3.5-turbo-0125")
-            prompt = ChatPromptTemplate.from_template(f"{prompt_txt}\n\n{{content}}")
-            chain = prompt | model | StrOutputParser()
-            summary = chain.invoke({"content": content})
-            text = summary if isinstance(summary, str) else summary.content
-            if text:
-                docs.append(
-                    Document(
-                        page_content=text.strip(),
-                        metadata={"id": str(uuid.uuid4()), "type": el.__class__.__name__}
-                    )
-                )
+    # Create Pinecone index if not exists
+    if index_name not in pinecone.list_indexes():
+        logger.info(f"Creating Pinecone index: {index_name}")
+        pinecone.create_index(name=index_name, dimension=1536, metric="cosine")
 
-        if not docs:
-            raise ValueError("No content extracted to index.")
-
-        logger.info(f"Document processing complete. Created {len(docs)} document chunks.")
-
-        # Clean and recreate vector DB directory
-        if os.path.exists(vector_db_dir):
-            shutil.rmtree(vector_db_dir)
-        os.makedirs(vector_db_dir, exist_ok=True, mode=0o777)
-
-        # Build FAISS index
-        embedding = OpenAIEmbeddings()
-        global vectorstore, retriever
-        logger.info("Creating vector embeddings...")
-        vectorstore = FAISS.from_documents(docs, embedding)
-        vectorstore.save_local(vector_db_dir)
-        retriever = vectorstore.as_retriever()
-        logger.info("Vector store created and saved successfully.")
-        return True
-    except Exception as e:
-        logger.error(f"Error processing document: {str(e)}", exc_info=True)
-        raise
+    index = pinecone.Index(index_name)
+    global vectorstore, retriever
+    logger.info("Indexing documents in Pinecone...")
+    vectorstore = PineconeStore.from_documents(docs, embedding_model, index_name=index_name)
+    retriever = vectorstore.as_retriever()
+    logger.info("Documents indexed successfully.")
+    return True
 
 
 def build_rag_chain(question: str) -> str:
-    """
-    - Retrieves context documents via FAISS.
-    - Prompts ChatOpenAI (gpt-4-turbo) to answer strictly based on context.
-    """
     logger.info(f"Received question: {question}")
     if retriever is None:
         logger.error("Document not processed. Call process_document() first.")
         raise RuntimeError("Document not processed. Call process_document() first.")
 
     try:
-        # Update to use newer invoke method instead of get_relevant_documents
         logger.info("Retrieving relevant documents...")
         docs = retriever.invoke(question)
         context = "\n\n".join(d.page_content for d in docs)
-        logger.info(f"Retrieved {len(docs)} relevant document chunks.")
+        logger.info(f"Retrieved {len(docs)} relevant documents.")
 
         detailed_prompt = (
             """
@@ -152,18 +145,16 @@ When explaining a section, include:
 If the provided context does not contain the required information, 
 state clearly that you cannot answer instead of making assumptions.
 
-
 ---
 **Context:**  {context}
 ---
 **Question:** {question}
 """
         )
+
         prompt_template = ChatPromptTemplate.from_template(detailed_prompt)
         chain = prompt_template | ChatOpenAI(model="gpt-4-turbo") | StrOutputParser()
-        logger.info("Generating answer...")
         result = chain.invoke({"context": context, "question": question})
-        logger.info("Answer generated successfully.")
         return result if isinstance(result, str) else result.content
     except Exception as e:
         logger.error(f"Error in RAG chain: {str(e)}", exc_info=True)
