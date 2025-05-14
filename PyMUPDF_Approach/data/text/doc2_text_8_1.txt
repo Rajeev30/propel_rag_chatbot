@@ -1,0 +1,9 @@
+Then, carry out an inspection and, if necessary, perform any repairs as required.
+1. The supply voltage must correspond to that stated on the identification plate and in the
+technical specifications (400 V / 50 Hz or 230 V 50 Hz). Never use any other type of
+power supply.
+2. The use of a lifesaving device on the power supply line is recommended. For more
+detailed information, contact a trusted electrician.
+3. The power plug must be a grounded tripolar type plug for T999/400V and a grounded
+bipolar plug for T999/230V. Any extension cords must be of equal or greater length
+than the power cord on the machine.

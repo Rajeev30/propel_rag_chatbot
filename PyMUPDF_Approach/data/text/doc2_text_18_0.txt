@@ -1,0 +1,12 @@
+MACHINES AND
+ACCESSORIES
+Page 19 of 84
+5 MACHINE SAFETY DEVICES
+5.1 Electrical safety devices
+The electrical circuit of the lathe is equipped with a rotary main switch with a safety key
+(see chapter 9.1 of this manual). This prevents the danger of unwanted and/or accidental
+starts of the machine, since the switch can only be activated through a voluntary action
+suitable for the given purpose and if a suitable key is available.
+The machine is also equipped with an emergency stop button (mushroom type). In an
+emergency, if pressure is applied to the mushroom button, the dangerous functions stop.
+The electric control panel is powered by 24V DC voltage; the presence of a transformer

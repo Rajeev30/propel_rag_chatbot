@@ -1,0 +1,14 @@
+MACHINES AND
+ACCESSORIES
+Page 20 of 84
+5.2 Mechanical Safety Devices
+Protective screens
+The screens and guards have the role of protecting the operator by preventing coolant, chips,
+splinters, tool fragments or even the workpiece, which may detach, from being projected
+towards the face or torso. The screens are fixed or mobile (see Figure 13).
+Figure 13 – Position of the protective screens.
+LEGEND:
+1: Gearbox guard (fixed);
+2: Protective screen for the spindle (movable interlocked);
+The interlocking movable guards, are equipped with suitable safety switches, connected to
+the machine's control system (electric circuit), so that the opening of the movable screen

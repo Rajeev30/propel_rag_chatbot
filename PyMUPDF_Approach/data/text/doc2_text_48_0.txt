@@ -1,0 +1,14 @@
+MACHINES AND
+ACCESSORIES
+Page 49 of 84
+10.1Automatic Feed Tool Carriage
+Longitudinal feed
+The automatic longitudinal feed of the carriage is derived from spindle, which transmits its
+motion to the grooved bar (see Figure 35).
+The longitudinal feed is due to the lower slide that drags the carriage in the direction of the
+axis of the Lathe. A worm screw B, connected to the grooved bar A, runs along the latter
+together with the carriage. The worm screw sets in rotation a gear wheel D and the other
+gears present, including the pinion M which meshes with the rack N, which is moved by
+dragging the carriage during the rotation of the pinion.
+Figure 35 – Longitudinal feed.
+Transverse feed

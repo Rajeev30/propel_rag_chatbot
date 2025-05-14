@@ -1,0 +1,31 @@
+1
+Oil
+Daily
+/
+7
+Transverse
+feed
+handwheel
+1
+Oil
+Daily
+/
+8
+Tool carriage
+1
+Oil 20
+Level
+indicator
+6 months
+9
+Spindle gears
+1
+Oil 20
+Level
+indicator
+6 months
+Oil level windows
+Top up the level
+O
+ONNCCEE AA DDAAYY
+fervi.com

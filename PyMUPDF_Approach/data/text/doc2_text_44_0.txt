@@ -1,0 +1,15 @@
+MACHINES AND
+ACCESSORIES
+Page 45 of 84
+9 – Linear error compensation
+The linear error compensation function is used for the correction of errors in the transmission
+system of the lead screw.
+The correction factor is expressed as:
+where
+L is the useful length of the Z axis in mm;
+L’is the value displayed on the panel in mm;
+S is the correction factor in mm/m.
+The correction factor can be positive if the displayed value is less than the actual length,
+negative if the value displayed is higher.
+The compensation range is ± 1.500 mm/m.
+Ex. If the useful length of the Y axes is 1000 mm and the panel at the end of travel of the

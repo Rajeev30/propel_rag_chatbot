@@ -1,0 +1,30 @@
+MACHINES AND
+ACCESSORIES
+Page 39 of 84
+4- DEFAULT DATA
+The default data allows continuous monitoring of the machining in
+operation.
+If, for example, it has a piece as shown in Figure 29/a) and you
+want to get the piece in Figure 29/b) you can set all the heights in
+order to precisely control the actual machining.
+To set the data, proceed as follows:
+Figure 29 – Example of
+machining.
+-
+Move the tool to the height A in the Z direction (longitudinal).
+-
+Press the button
+to set height 5.
+.
+Y
+
+-
+5. 0 0 0 Y
+-
+Press the
+button then the
+button to choose the negative direction of the
+machining (towards the spindle ).
+If an incorrect value is entered, press
+again to enter the correct value.
+-

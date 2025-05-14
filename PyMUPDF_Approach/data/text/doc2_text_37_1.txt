@@ -1,0 +1,29 @@
+-
+Press the
+button twice to activate the auto-diagnostic function. Press
+to finish
+the setting process.
+A)
+X
+t e s t o f f
+3 – RESETTING THE DISPLAY
+-
+You can reset the display of the X, Y and Z axes at any time by pressing the
+button,
+or
+and then the
+button.
+3 2 1. 4 5 6
+X
+
+0. 0 0 0
+X
+CLS
+
+ENT
+1
+0
+CLS
+X
+
+fervi.com

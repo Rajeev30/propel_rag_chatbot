@@ -1,0 +1,5 @@
+1 | Check that all moving parts are well lubricated. | nan
+2 | Clean the surface of the spindle, the turret and the body of the machine. | nan
+3 | Check that there are no objects / tools near the moving parts. | nan
+4 | Check the operation of the manually operated handwheels. | nan
+5 | Check the wear of the guide rails. | nan

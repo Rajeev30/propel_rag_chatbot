@@ -1,0 +1,9 @@
+The panel for the adjustment of the spindle rotation speed (see Figure 16), is positioned at
+the left part of the machine, between the spindle and the gearbox. It is equipped with two
+levers, marked with colours, letters and numbers, for selection of the desired rotation speed,
+depending on the type of processing and the material to be processed.
+Figure 18 – Speed adjustment knobs.
+To select the desired rotation speed, turn the knobs to the corresponding positions, according
+to the instructions given in this manual or on the rotation speed plate attached directly to the
+machine (see Figure 16).
+Spindle speed adjustment

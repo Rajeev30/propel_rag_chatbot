@@ -1,0 +1,20 @@
+T999/E001 Saddle | nan | T999/E042 Bearing | nan
+T999/E002 Slide | nan | T999/E043 Bearing | nan
+T999/E003 Rotating slide | nan | T999/E044 Screw | nan
+T999/E004 Upper slide | nan | T999/E045 Screw | nan
+T999/E005 Collar | nan | T999/E046 Screw | nan
+T999/E006 Gib | nan | T999/E047 Screw | nan
+T999/E007 Hub | nan | T999/E048 Allen key | nan
+T999/E008 Strip | nan | T999/E049 Allen key | nan
+T999/E009 Gib | nan | T999/E050 Allen key | nan
+T999/E010 Stop | nan | T999/E052 Allen key | nan
+T999/E011 Stop | nan | T999/E053 Adjustment grub screw | nan
+T999/E012 Aodjustment grub screwT999/E013 T999/E014 T999/E015 T999/E016 T999/E017 T999/E018 T999/E019 T999/E020 T999/E022 T999/E023 T999/E024 T999/E025 T999/E026 T999/E027 T999/E028 T999/E029 fWasher T999/E030 T999/E031 T999/E032 Hammer screw Lever base Lever Stop Screw Micrometer Switch Switch Collar Washer Nut Micrometer r Plate Plate Plate Screw Turret base Adjustment screw Adjustment screw v | iT99.9/E060 | T999/E054 T999/E055 T999/E056 T999/Ec057 T999/E058 T999/E059 T999/E061 T999/E062 T999/E063 T999/E064 T999/E066 T999/E067 T999/E069 T999/E070 T999/E071 T999/E072 T999/E073 T999/E074 T999/E075 Adjustment grub screwAdjustment grub screwAdjustment grub screwAdjustment grub screwNutNutWasherScrewSpringOilerPlugShaft gearBearingAllen keyLeverHandleSpacerKeyScrew | nan
+T999/E033 Switch | nan | T999/E076 Key | nan
+T999/E034 Gib | nan | T999/E077 Thrusting bearing | nan
+T999/E035 T bolts | nan | T999/E078 Bearing housing | nan
+T999/E036 Threaded lock | nan | T999/E079 Bearing dust cover | nan
+T999/E037 Nut | nan | T999/E080 Washer | nan
+T999/E038 Switch cover | nan | T999/E081 Washer | nan
+T999/E039 Small brush | nan | T999/E082 Locking nut | nan
+T999/E040 Small brush | nan | T999/E083 Allen key | nan

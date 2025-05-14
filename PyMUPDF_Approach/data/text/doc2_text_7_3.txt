@@ -1,0 +1,19 @@
+motor and wait for the spindle to stop.
+20. Do not move away from the machine until the tools and other moving parts, have
+completely stopped.
+21. After the work is completed, clean the tool and check its efficiency.
+22. Replace worn and/or damaged parts, check that the repairs and protections work
+properly before operating. Eventually, if necessary, have it checked by Service staff.
+Use only original spare parts.
+23. Unplug the power cord of the machine from the power outlet when:
+
+the machine is not being operated;
+
+it is left unattended;
+
+performing maintenance or registration, because the machine does not work properly;
+
+the power cable is damaged;
+
+the tool is replaced;
+

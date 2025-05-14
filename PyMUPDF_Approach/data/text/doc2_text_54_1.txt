@@ -1,0 +1,8 @@
+follows (see Figure 42):
+1. Loosen the bearing lock nut;
+2. Tighten the bearing adjustment nut;
+3. Test the spindle by rotating it, and — by means of a comparator (See Point 4 of Chapter
+10) — make sure it rotates perfectly.
+4. Re-tighten the bearing locking nut.
+Figure 42 – Spindle alignment.
+fervi.com

@@ -1,0 +1,21 @@
+relative coordinates.
+-
+Bring the cutting tool to the D plane.
+0. 0 0 0 X
+A L E
+0. 0 0 0 Y
+-
+Move the cutting tool to the C plane.
+0. 0 0 0 X
+A L E
+-
+1 0 0. 0 0 0 Y
+-
+Move the cutting tool to the B plane.
+0. 0 0 0 X
+A L E
+-
+1 5 0. 0 0 0 Y
+
+
+fervi.com

@@ -1,0 +1,24 @@
+MACHINES AND
+ACCESSORIES
+Page 16 of 84
+4.2.7 Steady rest
+In the operations of drilling, boring and facing, the tailstock can not
+be used to secure the work piece.
+On the other hand, if the pieces are long and heavy, it is not
+enough to use only a self-centring spindle, but you must attach one
+end of the work piece using a tool called a steady rest (see figure
+8)
+They are supplied with two rests: steady rest and follow rest
+Figure 8 – Rests.
+4.2.8 Electric control panel
+Figure A
+Figure B
+Figure A
+WHITE WARNING LIGHT :
+Indicates the presence of voltage
+BLACK SELECTOR :
+Coolant pump selector
+GREEN BUTTON :Gears application button
+RED MUSHROOM :
+EMERGENCY STOP
+Figure B

@@ -1,0 +1,6 @@
+nan | Parts of the machine | nan | nan | nan | Frequency | nan
+. | nan | n point | lubricant | nan | nan | t frequency
+10 | Carriage rails | 4 | Oil 20 | nan | Daily | /
+nan | nan | nan | nan | nan | Level | nan
+11 | Gears for threading | 1 | Oil 20 | nan | nan | 6 months
+nan | nan | nan | nan | nan | indicator | nan

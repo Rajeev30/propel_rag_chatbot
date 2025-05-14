@@ -1,0 +1,10 @@
+The different spindle speeds are obtained by means of a gear speed change (see also section
+4.2.3 of this manual).
+The spindle (see figure 3) is installed on the head shaft, and is
+supported by two precision bearings. It is self-centring, with
+three terminals (jaws) which permit the clamping of the workpiece
+in a safe and stable way. For the opening / closing of the jaws it is
+necessary to insert a special key in the housing (square cross-
+section), on the outer contour of the spindle. For a more detailed
+explanation on this subject, see section 10 of this manual.
+The danger zone, in the vicinity of the spindle, is protected by a

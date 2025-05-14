@@ -1,0 +1,14 @@
+The change of feed speed of the Gear head lathe (Art. LC340/1000) is mixed: mechanical
+with knobs for speed selection (see section 9.2.2) and with replaceable gears.
+To carry out the replacement of the gears, proceed as described below:
+Risk of Crushing
+Before replacing the gears, turn off the machine, put the main switch in the "0" position .
+1. Open the guard for the feed speed change gearbox, placed on
+the left part of the machine;
+2. Unscrew the fastening nuts and disassemble the gears (see
+Figure 38);
+3. Position the relative gears for the feed desired, check they fit
+perfectly and tighten the fastening nuts;
+4. Close the guard of the gearbox.
+Figure 38 – Gears.
+fervi.com

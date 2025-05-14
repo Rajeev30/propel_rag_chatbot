@@ -1,0 +1,11 @@
+gears present, including the pinion M which meshes with the rack N, which is moved by
+dragging the carriage during the rotation of the pinion.
+Figure 35 – Longitudinal feed.
+Transverse feed
+The transverse feed is due to the transverse slide which drags the upper slide and the tool in
+the perpendicular direction to the axis of the Lathe (see Figure 36). And by moving the lever
+E to position 3, the idler wheel O meshes with the pinion G integral with the screw H. The
+screw is coupled to the casing I integral with the transverse slide. The rotation of the screw
+therefore moves the transverse slide.
+Figure 36 – Transverse feed.
+fervi.com

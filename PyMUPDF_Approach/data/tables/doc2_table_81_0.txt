@@ -1,0 +1,15 @@
+A) Damaged bearings. | B) Contact Customer Service.
+B) Bearings not lubricated. | C) Lubricate
+Noisy operation | nan
+C) Blunt tool. | D) Remove/sharpen the tool.
+D) Loose tool. Tighten the fmastening lever.A) Electrical power supply. B) Wiring connections | E) A) B) C) Check supply.Check connections.Contact Technical Support.the the mains powerwiring
+The motor will not | nan
+start.C) Burnt motor windings. cD) D) Blown fuses. E) Broken switch. | Replace the fuses.E) Contact technical support.
+A) Excessive workpiece.pressure on.the | A) Apply less pressure.
+Shavrings will not discharge.The or much. overheats tool "softens"fD) too B) C) A) ethe material well. Tool is worvn or does not cut Needs lubrication. Data properly. cables not connected | B) C) D) A) Check wear.of rear of the panel.Clean the machine.Check the tool sharpness andLubricate as you work.data the cables correct X, Y, connectionZ at the
+The panel does | nan
+not display B) Compensation factor is | B) Proceed with the deciding the
+correctlyincorrect. | compensation factor and
+F) | setting of the panel.
+C) Setting unit is not correct. | C) Check to see if the display
+nan | unit is Metric or Imperial.

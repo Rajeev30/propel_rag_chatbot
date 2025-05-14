@@ -1,0 +1,13 @@
+Every 6 months of the machine’s life, perform a thorough inspection of operation and wear
+and precisely level the table.
+The gear unit requires no maintenance other than oil changes.
+11.3Adjusting the Machine
+11.3.1
+Adjusting the tension of the motor belts
+Make sure the motor belt tension is at an appropriate level. In this regard, make a simple
+check by pressing down firmly on the individual belts (approximately in the middle), which
+should move by a maximum of 5 mm.
+If the belts are loose or too tight, loosen the belt adjustment system bolts until the correct
+tension is achieved.
+Figure 40 – Drive belts.
+Proper belt tension reduces wear and increases the production of the machine.

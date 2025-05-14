@@ -1,0 +1,22 @@
+nan | Parts of the machine | nan | nan | nan | Frequency | nan
+. | nan | n point | lubricant | nan | nan | t frequency
+nan | Feed shaft | nan | nan | nan | nan | nan
+1 | nan | 2 | Oil | nan | Daily | /
+nan | and lead screw bearings: | nan | nan | nan | nan | nan
+2 | Transverse feed casing | 1 | Oil | nan | Daily | /
+nan | Tailstock sleeve and | nan | nan | nan | nan | nan
+3 | hand wheelf | 2 | Oil | nan | Daily | /
+4 | Transverse slide | 2 | Oil | nan | Daily | /
+5 | Longitudinal slide | 3 | Oil | nan | Daily | /
+nan | Longitudinal feed | nan | nan | nan | nan | nan
+6 | nan | 1 | Oil | nan | Daily | /
+nan | handwheel | nan | nan | nan | nan | nan
+nan | Transverse feed | nan | nan | nan | nan | nan
+7 | nan | 1 | Oil | nan | Daily | /
+nan | handwheel | nan | nan | nan | nan | nan
+nan | nan | nan | nan | nan | Level | nan
+8 | Tool carriage | 1 | Oil 20 | nan | nan | 6 months
+nan | nan | nan | nan | nan | indicator | nan
+nan | nan | nan | nan | nan | Level | nan
+9 | Spindle gears | 1 | Oil 20 | nan | nan | 6 months
+nan | nan | nan | nan | nan | indicator | nan

@@ -1,0 +1,10 @@
+Reinforcements ribs have been incorporated that increase rigidity.
+4.2.2 Head and spindle
+The head is made of high strength cast iron, in addition two internal protrusions which have
+been introduced that increase rigidity, reducing vibration during high speed machining.
+The different spindle speeds are obtained by means of a gear speed change (see also section
+4.2.3 of this manual).
+The head is made of high strength cast iron, in addition two internal protrusions which have
+been introduced that increase rigidity, reducing vibration during high speed machining.
+The different spindle speeds are obtained by means of a gear speed change (see also section
+4.2.3 of this manual).

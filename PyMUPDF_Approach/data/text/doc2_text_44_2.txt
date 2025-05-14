@@ -1,0 +1,24 @@
+s
+0. 0 2 0 Y
+-
+Press the
+button to confirm the data.
+The
+linear
+error
+compensation
+can
+be
+performed
+by
+either
+displaying
+the
+absolute
+coordinates, or displaying the relative coordinates.
+10 – Disconnection of the power supply
+If the power supply is disconnected or it is necessary to turn off the machine during
+machining, the panel is able to automatically store the coordinates where the tool is located,
+the compensation factor currently set and the display mode.
+When the machine is turned on again, the display will show the exact data before the
+interruption, immediately after the initial self-diagnosis phase. If the tool and/or workpiece

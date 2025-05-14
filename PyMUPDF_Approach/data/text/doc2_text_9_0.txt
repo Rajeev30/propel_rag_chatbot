@@ -1,0 +1,39 @@
+MACHINES AND
+ACCESSORIES
+Page 10 of 84
+3 TECHNICAL SPECIFICATIONS
+Description (unit of measurement)
+T999/230V
+T999/400V
+Centres distance (mm)
+1000
+Spindle hole diameter (mm)
+38
+Maximum swing over the bed (mm)
+320
+Maximum swing over the cross slide (mm)
+198
+Turning diameter over cavity (mm)
+470
+Spindle diameter (3 + 3 self centring) (mm)
+160
+Spindle connector
+Camlock D1-4
+No. of spindle speeds
+8
+Spindle speed (r/min)
+70 - 2000 RPM
+No. of metric threads
+32
+Range of metric threads (mm)
+0.44- 10
+No. of inch threads
+20
+Range of inch threads (mm)
+2 ¼ - 40
+Range of longitudinal feeds (mm)
+00.78- 1.044
+Range of transverse feeds (mm)
+0.022- 0.298
+Outer diameter of the feed screw (mm)
+22

@@ -1,0 +1,22 @@
+When the machine is turned on again, the display will show the exact data before the
+interruption, immediately after the initial self-diagnosis phase. If the tool and/or workpiece
+have not been moved, it is possible to resume machining without problems.
+ENT
+M/
+
+
+
+
+m
+mm
+L
+L
+L
+S
+/
+1000
+/
+'
+
+
+fervi.com

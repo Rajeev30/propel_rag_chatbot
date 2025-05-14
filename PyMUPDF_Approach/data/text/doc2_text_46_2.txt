@@ -1,0 +1,12 @@
+is to provide adequate protection for the operator, in relation to mechanical hazards in the
+"danger zone" of the spindle.
+8.
+Set the correct spindle rotation speed, using the knobs on the control panel of the
+machine (see Figure 18).
+9.
+Turn the main switch to position "I" (see Figure 16) verifying that the voltage warning
+light has turned on (white, see ref. c in Figure 17).
+10. Move the start lever of the electric motor to start the rotation of the spindle, at the same
+time choosing the direction of rotation.
+11. Perform the machining of the workpiece, by moving the tool towards the workpiece, in
+rotation, using the handwheels that regulate the fine movement of the tool holder slides

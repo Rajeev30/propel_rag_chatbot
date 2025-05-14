@@ -1,0 +1,56 @@
+Shaft 16z
+T999/C081
+Oil level window
+T999/C029
+Washer
+T999/C084
+Allen key M4 x 12
+T999/C030
+Washer
+T999/C085
+Allen key M4 x 12
+T999/C031
+Shaft
+T999/C086
+Allen key M4 x 12
+T999/C032
+Washer
+T999/C087
+Allen key M4 x 12
+T999/C033
+Gear 21z
+T999/C088
+Allen key M4 x 12
+T999/C034
+Gear 29z
+T999/C089
+Allen key M4 x 12
+T999/C035
+Gear 46z
+T999/C093
+Screw M6 x 12
+T999/C036
+Gear 38z
+T999/C095
+Screw M8 x 8
+T999/C037
+Spacer
+T999/C096
+Screw M8 x 10
+T999/C038
+Gear 26z
+T999/C097
+Screw M8 x 12
+T999/C039
+Gear 34z
+T999/C098
+Screw M8 x 16
+T999/C040
+Gear 53z
+T999/C099
+Screw M8 x 40
+T999/C041
+Lid
+T999/C100
+Screw M4 x 8
+fervi.com

@@ -1,0 +1,28 @@
+MACHINES AND
+ACCESSORIES
+Page 30 of 84
+9.2.2 Automatic feed speed adjustment knobs
+Figure 19 - Feed adjustment knobs.
+The panel for automatic feed speed adjustment (see Figure 19), is
+positioned at the left part of the machine, under the spindle rotation
+speed adjustment panel.
+The different speeds are selected via 4 knob switches which control the
+gear speed change (ref. F, G, H, I in Figure 19). There is also a fifth
+knob for selecting the feed direction of the carriage (ref. E in Figure
+19).
+Threading
+To make a thread:
+Operate the knob (I), insert the bar for threading in 4 positions (see
+Figure 20);
+
+Position
+the
+two
+knobs
+(F)
+(G)
+and
+(H)
+according
+to
+the

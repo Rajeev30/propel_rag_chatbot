@@ -1,0 +1,44 @@
+MACHINES AND
+ACCESSORIES
+Page 41 of 84
+-
+Press the
+button (to switch to the relative coordinates) then reset the display of Y,
+by pressing the
+and
+buttons.
+0. 0 0 0 X
+I N C
+0. 0 0 0 Y
+-
+Move the cutting tool to the A plane.
+0. 0 0 0 X
+I N C
+-
+1 0. 0 0 0 Y
+-
+Move the cutting tool to the E plane.
+0. 0 0 0 X
+I N C
+-
+3 0. 0 0 0 Y
+-
+Reset the Y display by pressing the
+and
+buttons.
+0. 0 0 0 X
+I N C
+0. 0 0 0 Y
+-
+Move the cutting tool to the A plane.
+0. 0 0 0 X
+I N C
+2 0. 0 0 0 Y
+-
+Press the
+button (to switch to the absolute coordinates)
+
+CLS
+CLS
+
+fervi.com

@@ -1,0 +1,12 @@
+safety (at least 200 lux is recommended).
+There are two main groups within the Lathe (see figure 1):
+
+The spindle shaft unit;
+
+The sliding tool holder unit.
+The first is constituted by the spindle, which is made integral with the workpiece, and by the
+components that transmit motion from the motor to the spindle.
+The second is constituted by the components that transmit motion to the slide, which guides
+the tool in the feeding motion and movement of the workpiece.
+Figure 1 – Typical main groups of the bench lathe.
+fervi.com

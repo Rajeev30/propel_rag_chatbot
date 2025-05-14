@@ -1,0 +1,26 @@
+MACHINES AND
+ACCESSORIES
+Page 40 of 84
+5 – Displaying the absolute / relative coordinates
+Press the buttons
+to move from the relative coordinates "INC" to the absolute
+coordinates "ALE" and vice versa, on the display of the Y coordinate. Set the D plane as the
+reference plane, in this way in "ALE" mode (absolute coordinates) on the Y axis 0 will be
+displayed.
+0.
+Y
+Figure 30 – Viewing absolute / relative.
+With reference to Figure 30 , proceed as follows, to switch from absolute coordinates to
+relative coordinates.
+-
+Bring the cutting tool to the D plane.
+0. 0 0 0 X
+A L E
+0. 0 0 0 Y
+-
+Move the cutting tool to the C plane.
+0. 0 0 0 X
+A L E
+-
+1 0 0. 0 0 0 Y
+-

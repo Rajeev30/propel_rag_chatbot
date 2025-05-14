@@ -1,0 +1,76 @@
+Screw
+T999/C013
+Shaft
+T999/C064
+Switch
+T999/C014
+Body
+T999/C065
+Switch
+T999/C015
+Pad
+T999/C066
+Switch
+T999/C016
+Hub
+T999/C067
+Spacer
+T999/C017
+Gear 37z
+T999/C068
+Fork
+T999/C018
+Washer
+T999/C069
+Fork
+T999/C019
+Washer
+T999/C073
+Gasket
+T999/C020
+Washer
+T999/C074
+Gasket
+T999/C021
+Gear 40z
+T999/C075
+Gasket
+T999/C022
+Washer
+T999/C076
+Gasket
+T999/C023
+Gear 37z
+T999/C077
+Gasket
+T999/C024
+Locking nut
+T999/C078
+Gasket
+T999/C025
+Gear 43z
+T999/C079
+Gasket
+T999/C026
+Gear 51z
+T999/C080
+Gasket
+T999/C028
+Shaft 16z
+T999/C081
+Oil level window
+T999/C029
+Washer
+T999/C084
+Allen key M4 x 12
+T999/C030
+Washer
+T999/C085
+Allen key M4 x 12
+T999/C031
+Shaft
+T999/C086
+Allen key M4 x 12
+T999/C032
+Washer
+T999/C087

@@ -1,0 +1,20 @@
+T999/B017 Key | nan | T999/B065 | Shaft
+T999/B018 O-ring | nan | T999/B066 | Pin
+T999/B019 Locking screw | nan | T999/B067 | Bearing cover
+T999/B020 Selector | nan | T999/B068 | Gasket
+T999/B021 Support | nan | T999/B069 | Gear
+T999/B022 Selector | nan | T999/B070 | Gear
+T999/B023 Support | nan | T999/B071 | Brass bushing
+T999/B024 Support | nan | T999/B072 | Gear
+T999/B025 Allen key | nan | T999/B073 | Brass bushing
+T999/B026 Gear | nan | T999/B074 | Shaft
+T999/B027 O-ring | nan | T999/B075 | Key
+T999/B028 Gasket | nan | T999/B076 | Brass bushing
+T999/B029 Cover | nan | T999/B077 | Gear
+T999/B030 Allen key | nan | T999/B078 | Brass bushing
+T999/B031 Conical plug | nan | T999/B079 | Gear
+T999/B032 Plug | nan | T999/B060 | Gear m
+T999/B033 Support | nan | T999/B081 | Gear
+T999/B034 T999/cB082 oBrass bushingT999/B035 T999/B036 T999/B037 T999/B038 T999/B039 T999/B040 T999/B041 T999/B042 T999/B043 T999/B044 T999/B045 T999/B046 T999/B047 T999/B048 fKey T999/B097 T999/B098 T999/B099 T999/B100 T999/B101 T999/B102 Small sphere Spring Locking screw Label Phillips head screw Locking screw Oil level Label Lock Bearing protection Gasket Washer Key Shaft 7 Pin Screw Washer Bearing Stop Gear r v | iT. | T999/B083 TTT999/B087 T999/B088 T999/B089 T999/B090 T999/B091 T999/B092 T999/B093 T999/B094 T999/B095 T999/B096 T999/B105 T999/B106 T999/B107 T999/B108 T999/B109 T999/B110 999/B084 999/B085 999/B086 | GearKeyShaftKeyBearing coverGasketGearShaftBrass bushingGearGasketBearing coverRingShaftBoltWasherScrewBoltWasherGear
+T999/B103 Bearing | nan | T999/B111 | Washer
+T999/B104 Gear cover | nan | T999/B112 | Allen key

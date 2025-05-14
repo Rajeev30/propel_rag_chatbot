@@ -1,0 +1,17 @@
+MACHINES AND
+ACCESSORIES
+Page 55 of 84
+11.3.2
+Tailstock alignment
+When the tailstock is off-axis, it is necessary to correct its position by turning the adjustment
+screw until aligned with the reference marks on the side plate.
+Figure 41 – Adjustment screw.
+11.3.3
+Spindle alignment
+When the spindle rotates off-axis or if particularly heavy machining operations must be
+carried out, make an adjustment to the bearings.
+The bearing that supports the spindle is tapered, to carry out the adjustment, proceed as
+follows (see Figure 42):
+1. Loosen the bearing lock nut;
+2. Tighten the bearing adjustment nut;
+3. Test the spindle by rotating it, and — by means of a comparator (See Point 4 of Chapter

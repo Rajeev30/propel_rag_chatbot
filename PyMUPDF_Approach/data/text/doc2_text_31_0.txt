@@ -1,0 +1,14 @@
+MACHINES AND
+ACCESSORIES
+Page 32 of 84
+9.2.4 Levers and handwheels of the carriage and tool holder slides
+On the tool holder carriage there are five manual controls (levers and handwheels) for
+carrying out fine adjustments and feeding (see Figure 22).
+Figure 22 – Lever and handwheel of the carriage.
+(I)
+Split casing lever : See section 9.2.3.
+(J)
+Lever for selection of transverse or longitudinal feeds: The lever selects the type
+of automatic feed desired. To operate the transverse feed, forward and backward, move the
+lever to the right (toward the tailstock), to operate the longitudinal feed, left and right, move
+the lever to the left (toward the spindle).

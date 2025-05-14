@@ -1,0 +1,12 @@
+MACHINES AND
+ACCESSORIES
+Page 50 of 84
+Longitudinal feed for threading:
+The automatic longitudinal feed originates in the spindle, which transmits motion to the lead
+screw connected to the spindle itself by means of gears that allow for the variation in the
+rotational speed (see Figure 37).
+The lead screw, with its rotation motion, exerts a thrust on the fixed casing of the carriage,
+determining the automatic feed, in a longitudinal direction.
+Figure 37 – Longitudinal feed with the lead screw.
+The change of feed speed of the Gear head lathe (Art. LC340/1000) is mixed: mechanical
+with knobs for speed selection (see section 9.2.2) and with replaceable gears.

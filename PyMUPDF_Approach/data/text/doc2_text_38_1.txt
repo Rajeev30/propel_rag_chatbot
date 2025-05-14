@@ -1,0 +1,16 @@
+-
+5. 0 0 0 Y
+-
+Press the
+button then the
+button to choose the negative direction of the
+machining (towards the spindle ).
+If an incorrect value is entered, press
+again to enter the correct value.
+-
+Start machining until the display shows -13.
+-
+1 3. 0 0 0 Y
+±
+5
+fervi.com

@@ -1,0 +1,15 @@
+MACHINES AND
+ACCESSORIES
+Page 34 of 84
+9.3 Mechanical brake pedal of the spindle
+The machine is equipped with a mechanical brake pedal that slows or stops the rotation of
+the spindle as required (see Figure 25).
+Pressing the pedal with your foot, the spindle is immediately braked, while releasing the
+pedal stops the braking action.
+Figure 25 – Pedal Details.
+9.4 Digital display
+The Gear head lathe 400V3A-T070 is equipped with a digital display that can monitor the
+dimensions X, Y and Z with a precision of 0.001.
+Furthermore it is possible to store different machining depths depending on the X coordinate
+in which the tool is located.
+Figure 26 - Close-up of the digital display.

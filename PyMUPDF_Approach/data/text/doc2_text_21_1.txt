@@ -1,0 +1,15 @@
+possibilities of "misuse" of the machine, are those which are "reasonably" more predictable
+and should be considered strictly prohibited.
+THE FOLLOWING IS STRICTLY PROHIBITED!
+
+Supplying the machine with voltage from the mains that is different from that shown on
+the identification plate (230V, 50 Hz).
+
+Using the machine for services other than those for which it is intended;
+
+Using the machine without having read the operating instructions and without due care.
+
+Using the machine, and in particular carrying out manual loading without the use of
+appropriate personal protective equipment (PPE) according to the instructions given in
+this manual.
+

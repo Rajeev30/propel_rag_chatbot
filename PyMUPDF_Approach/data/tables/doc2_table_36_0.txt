@@ -1,0 +1,4 @@
+0 | Multifunction milling machine
+1 | Universal milling machine
+2 | Process unloader
+3 | Lathe

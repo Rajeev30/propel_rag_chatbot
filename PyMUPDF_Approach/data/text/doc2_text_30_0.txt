@@ -1,0 +1,11 @@
+MACHINES AND
+ACCESSORIES
+Page 31 of 84
+9.2.3 Adjustment knob / lever of the split casing
+The casing adjustment knob and lever for the transfer of motion from the lead screw to the
+tool holder carriage (see Figure 21), are located at the sides of the tool holder carriage itself.
+Figure 21 – Close-up of knob and lever.
+By turning the knob or lever 90°, the split casing "closes" on the lead screw, creating a rigid
+coupling between the two, and allowing the transfer of motion from the lead screw to the tool
+holder carriage (and to the tool) for the automatic feed for threading operations.
+fervi.com
