@@ -23,4 +23,5 @@ nest_asyncio
 spacy==3.7.2
 thinc==8.2.2
 numpy==1.26.4
+langchain_openai
 
