@@ -8,7 +8,7 @@ jpype1
 openai 
 tqdm  
 pillow
-pinecone
+pinecone-client==2.2.4
 pdfplumber 
 jpype1 
 tabula-py 
