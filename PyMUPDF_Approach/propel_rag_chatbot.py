@@ -45,6 +45,7 @@ from tqdm import tqdm
 import openai                     # v1.14+
 from langchain_openai import OpenAIEmbeddings
 import pinecone 
+from pinecone import ServerlessSpec
 # import streamlit as st
 
 load_dotenv()                           # expects .env in the repo root
