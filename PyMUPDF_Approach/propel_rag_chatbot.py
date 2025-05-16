@@ -431,7 +431,10 @@ index_name = pinecone.Index("multimodal-manual")
 #     )
 
 # ❸  --- get a handle you can use for upserts / queries
-index = pinecone.Index(index_name)
+index = pinecone.Index(
+    index_name="multimodal-manual",
+    host="https://multimodal-manual-pybssqi.svc.aped-4627-b74a.pinecone.io"
+)
 
 # if index_name not in pinecone.list_indexes():
 #     pinecone.create_index(
