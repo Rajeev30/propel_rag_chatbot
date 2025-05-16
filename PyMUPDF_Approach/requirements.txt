@@ -20,6 +20,7 @@ pytesseract
 pillow 
 spacy==3.7.2
 nest_asyncio
-numpy==1.24.4
 spacy==3.7.2
-thinc==8.2.1
+thinc==8.2.2
+numpy==1.26.4
+
