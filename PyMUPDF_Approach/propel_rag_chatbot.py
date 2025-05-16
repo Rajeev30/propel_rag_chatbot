@@ -44,7 +44,7 @@ import base64, mimetypes, uuid, os, time
 from tqdm import tqdm
 import openai                     # v1.14+
 from langchain_openai import OpenAIEmbeddings
-import pinecone as pc
+import pinecone 
 # import streamlit as st
 
 load_dotenv()                           # expects .env in the repo root
@@ -415,21 +415,21 @@ embeddings = OpenAIEmbeddings(model=EMBED_MODEL)
 
 PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")  # keep this
 
-pc.init(
+pinecone.init(
     api_key=os.getenv("PINECONE_API_KEY"),
     environment=os.getenv("PINECONE_ENV")
 )
-index_name = pc.Index("multimodal-manual")
+index_name = pinecone.Index("multimodal-manual")
 
-if index_name not in pc.list_indexes().names():
-    pc.create_index(
+if index_name not in pinecone.list_indexes().names():
+    pinecone.create_index(
         name=index_name,
         dimension=1536,  # or embeddings.embedding_dimension
         metric="cosine",
         spec=ServerlessSpec(cloud="aws", region="us-east-1")
     )
 
-index = pc.Index(index_name)
+index = pinecone.Index(index_name)
 
 def img_to_data_uri(path: Path) -> str:
     mime, _ = mimetypes.guess_type(path)
@@ -564,8 +564,13 @@ to_upsert = [
     )
     for i in range(len(docs))
 ]
-pc = pc(api_key=os.getenv("PINECONE_API_KEY"))
-index = pc.Index("multimodal-manual")          # ← already created with dim=3072
+pinecone.init(
+    api_key=os.getenv("PINECONE_API_KEY"),
+    environment=os.getenv("PINECONE_ENV")
+)
+
+index = pinecone.Index("multimodal-manual")
+        # ← already created with dim=3072
 
 def payload_size(batch):
     return len(json.dumps(batch).encode())
