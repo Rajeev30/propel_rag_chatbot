@@ -420,17 +420,28 @@ pinecone.init(
     api_key=os.getenv("PINECONE_API_KEY"),
     environment=os.getenv("PINECONE_ENV")
 )
-index_name = pinecone.Index("multimodal-manual")
-
-if index_name not in pinecone.list_indexes():
+# index_name = pinecone.Index("multimodal-manual")
+INDEX_NAME = "multimodal-manual"
+if INDEX_NAME not in pinecone.list_indexes():          # ✅  v2 returns a Python list
     pinecone.create_index(
-        name=index_name,
-        dimension=1536,  # or embeddings.embedding_dimension
-        metric="cosine",
-        spec=ServerlessSpec(cloud="aws", region="us-east-1")
+        name      = INDEX_NAME,
+        dimension = 1536,                              # same as embedding dim
+        metric    = "cosine"
+        # ⚠️  NO spec=ServerlessSpec(...) here – that’s v3-only
     )
 
-index = pinecone.Index(index_name)
+# ❸  --- get a handle you can use for upserts / queries
+index = pinecone.Index(INDEX_NAME)
+
+# if index_name not in pinecone.list_indexes():
+#     pinecone.create_index(
+#         name=index_name,
+#         dimension=1536,  # or embeddings.embedding_dimension
+#         metric="cosine",
+#         spec=ServerlessSpec(cloud="aws", region="us-east-1")
+#     )
+
+# index = pinecone.Index(index_name)
 
 def img_to_data_uri(path: Path) -> str:
     mime, _ = mimetypes.guess_type(path)
