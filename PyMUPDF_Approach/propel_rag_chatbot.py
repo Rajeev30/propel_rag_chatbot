@@ -421,7 +421,7 @@ pinecone.init(
 )
 index_name = pinecone.Index("multimodal-manual")
 
-if index_name not in pinecone.list_indexes().names():
+if index_name not in pinecone.list_indexes():
     pinecone.create_index(
         name=index_name,
         dimension=1536,  # or embeddings.embedding_dimension
