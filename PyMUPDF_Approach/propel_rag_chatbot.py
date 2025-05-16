@@ -44,7 +44,7 @@ import base64, mimetypes, uuid, os, time
 from tqdm import tqdm
 import openai                     # v1.14+
 from langchain_openai import OpenAIEmbeddings
-from pinecone import Pinecone
+import pinecone as pc
 # import streamlit as st
 
 load_dotenv()                           # expects .env in the repo root
@@ -417,8 +417,11 @@ embeddings = OpenAIEmbeddings(model=EMBED_MODEL)
 
 PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")  # keep this
 
-pc = Pinecone(api_key=PINECONE_API_KEY)
-index_name = "multimodal-manual"
+pc.init(
+    api_key=os.getenv("PINECONE_API_KEY"),
+    environment=os.getenv("PINECONE_ENV")
+)
+index_name = pc.Index("multimodal-manual")
 
 if index_name not in pc.list_indexes().names():
     pc.create_index(
@@ -563,7 +566,7 @@ to_upsert = [
     )
     for i in range(len(docs))
 ]
-pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
+pc = pc(api_key=os.getenv("PINECONE_API_KEY"))
 index = pc.Index("multimodal-manual")          # ← already created with dim=3072
 
 def payload_size(batch):
