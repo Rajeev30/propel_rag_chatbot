@@ -421,14 +421,14 @@ pinecone.init(
     environment=os.getenv("PINECONE_ENV")
 )
 # index_name = pinecone.Index("multimodal-manual")
-INDEX_NAME = "multimodal-manual"
-if INDEX_NAME not in pinecone.list_indexes():          # ✅  v2 returns a Python list
-    pinecone.create_index(
-        name      = INDEX_NAME,
-        dimension = 1536,                              # same as embedding dim
-        metric    = "cosine"
-        # ⚠️  NO spec=ServerlessSpec(...) here – that’s v3-only
-    )
+# INDEX_NAME = "multimodal-manual"
+# if INDEX_NAME not in pinecone.list_indexes():          # ✅  v2 returns a Python list
+#     pinecone.create_index(
+#         name      = INDEX_NAME,
+#         dimension = 1536,                              # same as embedding dim
+#         metric    = "cosine"
+#         # ⚠️  NO spec=ServerlessSpec(...) here – that’s v3-only
+#     )
 
 # ❸  --- get a handle you can use for upserts / queries
 index = pinecone.Index(INDEX_NAME)
