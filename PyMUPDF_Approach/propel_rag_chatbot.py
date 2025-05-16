@@ -421,7 +421,7 @@ pinecone.init(
     environment=os.getenv("PINECONE_ENV")
 )
 # index_name = pinecone.Index("multimodal-manual")
-# INDEX_NAME = "multimodal-manual"
+INDEX_NAME = "multimodal-manual"
 # if INDEX_NAME not in pinecone.list_indexes():          # ✅  v2 returns a Python list
 #     pinecone.create_index(
 #         name      = INDEX_NAME,
