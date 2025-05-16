@@ -1,7 +1,6 @@
 pymupdf 
 langchain 
 openai 
-pinecone-client 
 tiktoken 
 python-dotenv
 tabula-py 
