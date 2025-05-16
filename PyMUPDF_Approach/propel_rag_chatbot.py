@@ -55,7 +55,6 @@ PINECONE_ENV     = os.getenv("PINECONE_ENV")  # e.g. "gcp-starter"
 
 nlp = spacy.load("en_core_web_sm")
 
-
 def load_pdf(path: Path) -> str:
     doc = fitz.open(path)
     text = []
@@ -63,12 +62,11 @@ def load_pdf(path: Path) -> str:
         text.append(page.get_text("text"))
     return "\n".join(text)
 
-raw_text = load_pdf(Path("/Users/rajeev/Downloads/doc2.pdf"))
-#print(raw_text[:1000])   # sanity‑check first 1 000 chars
+raw_text = load_pdf(Path("PyMUPDF_Approach/doc2.pdf"))
 
 
 # ---------- CONFIG ----------
-PDF_PATH  = Path("/Users/rajeev/Downloads/doc2.pdf")
+PDF_PATH  = Path("PyMUPDF_Approach/doc2.pdf")
 BASE_DIR  = Path("data")
 DIAGRAM_THRESHOLD = 0.60   # % of page area to be considered full-page diagram
 LOGO_THRESHOLD    = 0.10   # % of page area under which we skip as logo/ornament
