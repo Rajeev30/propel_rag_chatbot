@@ -420,8 +420,8 @@ pinecone.init(
     api_key=os.getenv("PINECONE_API_KEY"),
     environment=os.getenv("PINECONE_ENV")
 )
-# index_name = pinecone.Index("multimodal-manual")
-INDEX_NAME = "multimodal-manual"
+index_name = pinecone.Index("multimodal-manual")
+# INDEX_NAME = "multimodal-manual"
 # if INDEX_NAME not in pinecone.list_indexes():          # ✅  v2 returns a Python list
 #     pinecone.create_index(
 #         name      = INDEX_NAME,
@@ -431,7 +431,7 @@ INDEX_NAME = "multimodal-manual"
 #     )
 
 # ❸  --- get a handle you can use for upserts / queries
-index = pinecone.Index(INDEX_NAME)
+index = pinecone.Index(index_name)
 
 # if index_name not in pinecone.list_indexes():
 #     pinecone.create_index(
