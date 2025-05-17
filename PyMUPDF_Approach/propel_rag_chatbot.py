@@ -1,8 +1,7 @@
 # ─── PREVENT STREAMLIT/TORCH RUNTIME ERRORS ───────────────────────
 import os
 os.environ["STREAMLIT_SERVER_RUN_ON_SAVE"] = "false"
-os.environ["STREAMLIT_WATCHER_TYPE"] = "none"  # disable watcher that crashes on torch.classes
-
+os.environ["STREAMLIT_WATCHER_TYPE"] = "none"  
 import nest_asyncio
 import asyncio
 nest_asyncio.apply()
@@ -45,14 +44,18 @@ from tqdm import tqdm
 import openai                     # v1.14+
 from langchain_openai import OpenAIEmbeddings
 import pinecone 
-# from pinecone import ServerlessSpec
-# import streamlit as st
 
-load_dotenv()                           # expects .env in the repo root
+load_dotenv()                           
 
 OPENAI_API_KEY  = os.getenv("OPENAI_API_KEY")
 PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
 PINECONE_ENV     = os.getenv("PINECONE_ENV")  # e.g. "gcp-starter"
+
+from pinecone import Pinecone
+pc = Pinecone(api_key=PINECONE_API_KEY)          #  <-- v3 client
+INDEX_NAME = "multimodal-manual"
+INDEX_HOST = "https://multimodal-manual-pybssqi.svc.aped-4627-b74a.pinecone.io"
+idx = pc.Index(name=INDEX_NAME, host=INDEX_HOST)  # idx is your handle
 
 nlp = spacy.load("en_core_web_sm")
 
@@ -416,35 +419,9 @@ embeddings = OpenAIEmbeddings(model=EMBED_MODEL)
 
 PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")  # keep this
 
-pinecone.init(
-    api_key=os.getenv("PINECONE_API_KEY"),
-    environment=os.getenv("PINECONE_ENV")
-)
-index_name = pinecone.Index("multimodal-manual")
-# INDEX_NAME = "multimodal-manual"
-# if INDEX_NAME not in pinecone.list_indexes():          # ✅  v2 returns a Python list
-#     pinecone.create_index(
-#         name      = INDEX_NAME,
-#         dimension = 1536,                              # same as embedding dim
-#         metric    = "cosine"
-#         # ⚠️  NO spec=ServerlessSpec(...) here – that’s v3-only
-#     )
-
 # ❸  --- get a handle you can use for upserts / queries
-index = pinecone.Index(
-    index_name="multimodal-manual",
-    host="https://multimodal-manual-pybssqi.svc.aped-4627-b74a.pinecone.io"
-)
+index = idx          # ←  the handle you created at the top
 
-# if index_name not in pinecone.list_indexes():
-#     pinecone.create_index(
-#         name=index_name,
-#         dimension=1536,  # or embeddings.embedding_dimension
-#         metric="cosine",
-#         spec=ServerlessSpec(cloud="aws", region="us-east-1")
-#     )
-
-# index = pinecone.Index(index_name)
 
 def img_to_data_uri(path: Path) -> str:
     mime, _ = mimetypes.guess_type(path)
@@ -579,12 +556,9 @@ to_upsert = [
     )
     for i in range(len(docs))
 ]
-pinecone.init(
-    api_key=os.getenv("PINECONE_API_KEY"),
-    environment=os.getenv("PINECONE_ENV")
-)
 
-index = pinecone.Index("multimodal-manual")
+index = idx   # reuse the handle
+
         # ← already created with dim=3072
 
 def payload_size(batch):
