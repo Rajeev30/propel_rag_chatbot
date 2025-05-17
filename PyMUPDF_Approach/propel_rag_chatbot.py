@@ -599,7 +599,7 @@ def extract_table_keywords(meta, limit=20):
     top_keywords = [kw for kw, _ in keyword_counts.most_common(limit)]
     return top_keywords
 
-from langchain_pinecone import PineconeVectorStore
+from langchain_community.vectorstores import Pinecone as PineconeVectorStore
 from langchain_openai import ChatOpenAI
 from langchain.chains import ConversationalRetrievalChain
 from langchain.memory import ConversationBufferMemory
