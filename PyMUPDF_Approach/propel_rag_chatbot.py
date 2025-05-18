@@ -694,63 +694,55 @@ chat_rag = ConversationalRetrievalChain.from_llm(
 from pathlib import Path
 from PIL import Image
 
-def ask(query):
-    def is_table_query(q):
-        table_keywords = extract_table_keywords(meta)  # Ensure meta is global or passed in
-        return any(kw in q.lower() for kw in table_keywords)
+from pathlib import Path
 
-    # Step 1: Determine if it's a table-driven query
-    table_mode = is_table_query(query)
+def ask(query: str):
+    """
+    Run a conversational-RAG query and return
+      answer_text, [source_sentence], image_path_or_None
+    """
+    # ── 0. reset working vars every call ─────────────────────────────
+    res          = None                # <- guarantees fresh answer
+    source_docs  = []
+    image_path   = None
+
+    # ── 1. decide whether to prefer tables ──────────────────────────
+    table_keywords = extract_table_keywords(meta)
+    table_mode     = any(kw in query.lower() for kw in table_keywords)
 
     if table_mode:
-        all_docs = retriever.invoke(query)
-        table_docs = [doc for doc in all_docs if doc.metadata.get("type") == "table"]
-        source_docs = table_docs[:5] if table_docs else all_docs[:5]
-    else:
-        res = chat_rag.invoke({"question": query})
-        source_docs = res["source_documents"]
+        # manual retrieval when the question looks tabular
+        all_docs   = retriever.invoke(query)
+        table_docs = [d for d in all_docs if d.metadata.get("type") == "table"]
+        source_docs = table_docs[:5] or all_docs[:5]
 
-    # Step 2: If not using the RAG chain, invoke manually
-    if "source_docs" in locals() and isinstance(source_docs, list) and "res" not in locals():
-        context_blob = "\n\n".join(doc.page_content for doc in source_docs)
-        system_prompt = "You are answering from a technical manual. Prioritize structured information when available, especially from tables."
-        completion = llm.invoke([
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": f"{query}\n\nRelevant context:\n{context_blob}"}
+        context = "\n\n".join(d.page_content for d in source_docs)
+        sys_prompt = ("You are answering from a technical manual. "
+                      "Prioritise structured information (tables) when available.")
+        llm_reply = llm.invoke([
+            {"role": "system", "content": sys_prompt},
+            {"role": "user",   "content": f"{query}\n\nContext:\n{context}"}
         ])
-        res = {"answer": completion.content, "source_documents": source_docs}
+        res = llm_reply.content
 
-    # Step 3: Look for top image (if any)
-    top_image_path = None
-    top_image_doc = None
+    else:
+        rag_out     = chat_rag.invoke({"question": query})
+        res         = rag_out["answer"]
+        source_docs = rag_out["source_documents"]
 
-    for doc in res["source_documents"]:
-        doc_type = doc.metadata.get("type")
-        path = doc.metadata.get("path")
-        if doc_type in {"image", "page"} and Path(path).suffix in {".png", ".jpg", ".jpeg"}:
-            top_image_path = path
-            top_image_doc = doc
+    # ── 2. pick a representative image (first one in sources) ───────
+    for d in source_docs:
+        if d.metadata.get("type") in {"image", "page"} and \
+           Path(d.metadata["path"]).suffix.lower() in {".png", ".jpg", ".jpeg"}:
+            image_path = d.metadata["path"]
             break
 
-    # Step 4: Return everything as structured data
-    # return {
-    # Deduplicate page numbers from sources
-    page_numbers = sorted({
-        int(doc.metadata.get("page", -1))
-        for doc in res["source_documents"]
-        if doc.metadata.get("page") is not None
-    })
+    # ── 3. craft one-line source sentence ───────────────────────────
+    pages = sorted({d.metadata.get("page") for d in source_docs
+                    if d.metadata.get("page") is not None})
+    if   not pages:           source_line = "No source page was identified."
+    elif len(pages) == 1:     source_line = f"See page {pages[0]} of the manual."
+    else:                     source_line = f"See pages {', '.join(map(str, pages))}."
 
-    # Format explanation sentence
-    if page_numbers:
-        if len(page_numbers) == 1:
-            source_summary = f"You can refer to page {page_numbers[0]} in the document for more details."
-        else:
-            pages = ", ".join(map(str, page_numbers))
-            source_summary = f"Relevant information is available on pages {pages} of the document."
-    else:
-        source_summary = "No source pages identified."
-
-    # Return the final answer, summary sentence, and image (if any)
-    return res["answer"], [source_summary], top_image_path
+    return res, [source_line], image_path
 
