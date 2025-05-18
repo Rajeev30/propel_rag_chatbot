@@ -89,4 +89,4 @@ if user_input:
         st.write(full_response)
 
         if image_path and Path(image_path).exists():
-            st.image(Image.open(image_path), caption="📎 Relevant Diagram", use_column_width=False)
+            st.image(Image.open(image_path), caption="📎 Relevant Diagram", use_container_width=False)
