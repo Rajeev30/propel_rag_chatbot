@@ -43,6 +43,7 @@ import base64, mimetypes, uuid, os, time
 from tqdm import tqdm
 import openai                     # v1.14+
 from langchain_openai import OpenAIEmbeddings
+from langchain_pinecone import PineconeVectorStore
 import pinecone 
 
 load_dotenv()                           
@@ -609,14 +610,14 @@ from pathlib import Path
 
 # Vector store
 vectorstore = PineconeVectorStore(
-    index=index,
+     pinecone_index = idx,
     embedding=embeddings,
     namespace="v1",
     text_key="text"
 )
 
 # Retriever
-retriever = vectorstore.as_retriever(search_kwargs={"k": 5})
+retriever = vectorstore.as_retriever(search_kwargs={"k": 20})
 
 # LLM
 llm = ChatOpenAI(model_name="gpt-4o", temperature=0.2)
@@ -637,59 +638,24 @@ chat_rag = ConversationalRetrievalChain.from_llm(
     output_key="answer"
 )
 
+from collections import Counter
 
-# def ask(query):
-#     def is_table_query(q):
-#         # Add more generic patterns here as needed
-#         table_keywords = extract_table_keywords(meta)
-#         return any(kw in q.lower() for kw in table_keywords)
+def should_prioritise_tables(query: str,
+                             retriever,
+                             top_k: int = 12,
+                             min_tables: int = 3,
+                             min_ratio: float = 0.35) -> bool:
+    """
+    Probe the vector store with the user query.  
+    If a significant share of the top-k hits are tables,
+    return True → switch to table-first logic.
+    """
+    hits = retriever.get_relevant_documents(query, k=top_k)
 
-#     # 1. Run table-prioritized retrieval if query looks structured
-#     table_mode = is_table_query(query)
-#     if table_mode:
-#         all_docs = retriever.get_relevant_documents(query)
-#         table_docs = [doc for doc in all_docs if doc.metadata.get("type") == "table"]
-#         source_docs = table_docs[:5] if table_docs else all_docs[:5]
-#     else:
-#         res = chat_rag.invoke({"question": query})
-#         source_docs = res["source_documents"]
+    table_hits = [h for h in hits if h.metadata.get("type") == "table"]
+    ratio      = len(table_hits) / max(1, len(hits))         # avoid /0
 
-#     # 2. If not using the RAG chain (manual filtered docs), rerun LLM
-#     if "source_docs" in locals() and isinstance(source_docs, list) and "res" not in locals():
-#         content_blob = "\n\n".join(doc.page_content for doc in source_docs)
-#         system_prompt = "You are answering from a technical manual. Prioritize structured information when available, especially from tables."
-#         res = llm.invoke([
-#             {"role": "system", "content": system_prompt},
-#             {"role": "user", "content": f"{query}\n\nRelevant context:\n{content_blob}"}
-#         ])
-#         res = {"answer": res.content, "source_documents": source_docs}
-
-#     # 3. Display any image or diagram found
-#     top_image_path = None
-#     top_image_doc  = None
-#     for doc in res["source_documents"]:
-#         doc_type = doc.metadata.get("type")
-#         path     = doc.metadata.get("path")
-#         if doc_type in {"image", "page"} and Path(path).suffix in {".png", ".jpg", ".jpeg"}:
-#             top_image_path = path
-#             top_image_doc  = doc
-#             break
-
-#     if top_image_path:
-#         print("\n🖼️  You can refer to the following diagram:")
-#         print(f"• {top_image_doc.metadata.get('type')} → {top_image_path} (page {top_image_doc.metadata.get('page')})")
-#         try:
-#             display(Image(filename=top_image_path, width=400))
-#         except Exception as e:
-#             print(f"[!] Failed to display image: {e}")
-
-#     # 4. Print response and sources
-#     print(f"\n🧑: {query}")
-#     print(f"🤖: {res['answer']}")
-
-#     print("\n--- Sources ---")
-#     for doc in res["source_documents"]:
-#         print(f"• {doc.metadata.get('type')} → {doc.metadata.get('path')} (page {doc.metadata.get('page')})")
+    return len(table_hits) >= min_tables or ratio >= min_ratio, hits
 
 from pathlib import Path
 from PIL import Image
@@ -707,14 +673,16 @@ def ask(query: str):
     image_path   = None
 
     # ── 1. decide whether to prefer tables ──────────────────────────
-    table_keywords = extract_table_keywords(meta)
-    table_mode     = any(kw in query.lower() for kw in table_keywords)
+    table_mode, probe_docs = should_prioritise_tables(
+        query=query,
+        retriever=retriever
+    )
 
     if table_mode:
-        # manual retrieval when the question looks tabular
-        all_docs   = retriever.invoke(query)
-        table_docs = [d for d in all_docs if d.metadata.get("type") == "table"]
-        source_docs = table_docs[:5] or all_docs[:5]
+        # Re-use the probe instead of querying twice
+        source_docs = [d for d in probe_docs if d.metadata.get("type") == "table"]
+        if not source_docs:                          # no pure tables? fall back
+            source_docs = probe_docs
 
         context = "\n\n".join(d.page_content for d in source_docs)
         sys_prompt = ("You are answering from a technical manual. "
@@ -723,12 +691,12 @@ def ask(query: str):
             {"role": "system", "content": sys_prompt},
             {"role": "user",   "content": f"{query}\n\nContext:\n{context}"}
         ])
-        res = llm_reply.content
+        answer_text = llm_reply.content
 
     else:
-        rag_out     = chat_rag.invoke({"question": query})
-        res         = rag_out["answer"]
-        source_docs = rag_out["source_documents"]
+        rag_out      = chat_rag.invoke({"question": query})
+        answer_text  = rag_out["answer"]
+        source_docs  = rag_out["source_documents"]
 
     # ── 2. pick a representative image (first one in sources) ───────
     for d in source_docs:
@@ -744,5 +712,5 @@ def ask(query: str):
     elif len(pages) == 1:     source_line = f"See page {pages[0]} of the manual."
     else:                     source_line = f"See pages {', '.join(map(str, pages))}."
 
-    return res, [source_line], image_path
+    return str(res), [source_line], image_path
 
