@@ -1,0 +1,35 @@
+MACHINES AND
+ACCESSORIES
+Page 37 of 84
+-
+After each setting, press the
+button and
+to move to the next step.
+-
+Setting the axis linear encoder measuring direction.
+1
+X
+X
+d i r
+-
+Press the button of the axis which you wish to set (X, Y, Z)
+-
+Press the
+button for a positive count in the direction of movement from the
+outside towards the rotation axis.
+-
+Press the
+button for a negative count in the direction of movement from the
+outside towards the rotation axis.
+-
+Press the
+buttons and
+to move to the next step.
+-
+Perform the above steps to set the measuring direction of the linear encoder
+of the Y axes (Z if used)
+-
+After each setting, press the
+button and
+to move to the next step.
+-

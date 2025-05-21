@@ -1,0 +1,19 @@
+
+Using the machine, and in particular carrying out manual loading without the use of
+appropriate personal protective equipment (PPE) according to the instructions given in
+this manual.
+
+Using the machine and, particularly, the tool improperly.
+
+Picking up moving tools or other moving parts.
+
+Taking measurements of the workpiece mounted on the spindle, without turning the
+motor off, unplugging it and waiting for the spindle to stop.
+
+Removing chips with your hands.
+
+Replacing the work tools or carrying out the speed change, without stopping the motor,
+disconnecting the plug and waiting for the machine to stop.
+
+Modifying and/or tampering with the safety devices of the lathe.
+

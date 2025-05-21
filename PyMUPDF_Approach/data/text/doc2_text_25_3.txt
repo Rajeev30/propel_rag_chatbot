@@ -1,0 +1,10 @@
+11.1, on "Lubrication".
+8.4.2 Connection to the power supply network
+Connect the power supply cable to the terminal inside the electrical cabinet. Connect the
+three phases to the connectors on the body of the terminal and the grounding conductor to
+the connector on the left side of the terminal itself.
+Connection
+Ensure the perfect connection of the power cord.
+The plant to which the machine is connected must have a suitable system for the automatic
+disconnection of electric power, for protection against indirect contacts.
+fervi.com

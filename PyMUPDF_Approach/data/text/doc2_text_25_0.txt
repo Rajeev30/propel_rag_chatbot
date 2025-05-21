@@ -1,0 +1,14 @@
+MACHINES AND
+ACCESSORIES
+Page 26 of 84
+8.3 Levelling the machine
+For this operation, it is recommended to use a precision spirit level (0.001 mm).
+8.3.1 Preliminary phase
+The preliminary phase serves to eliminate the presence of torsions in the lathe table. Proceed
+to reset the head by adjusting the relative screws and then locking the tailstock with the
+relative adjustment screws moving the reference mark to zero.
+8.3.2 Transverse levelling of the table
+Position the spirit level in a transverse direction on the lathe guides under the spindle and
+check the bubble.
+Position the spirit level in a transverse direction on the table guides under the tailstock and
+check the bubble.

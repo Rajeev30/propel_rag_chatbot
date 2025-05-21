@@ -1,0 +1,13 @@
+move the slide to the left (towards the spindle), turn the handwheel clockwise and vice versa
+to move the slide to the right (towards the tailstock), rotate the handwheel anticlockwise.
+(P)
+Tool locking lever: The lever allows locking of the cutting tool, to the tool holder base
+(turret).
+P
+N
+L
+M
+K
+J
+I
+fervi.com

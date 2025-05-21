@@ -1,0 +1,21 @@
+MACHINES AND
+ACCESSORIES
+Page 44 of 84
+8 – Displaying Metric / Imperial coordinates
+The digital panel can also show the coordinates of the X axis in Imperial units (inches), this
+display is not available for the Y axis
+With reference to Figure 32, proceed as follows, to switch from Metric coordinates to Imperial
+coordinates.
+Figure 32 – Displaying Metric / Imperial coordinates.
+-
+Move the tool to point A, the coordinates in Metric units are 25.4 mm.
+2 5. 4 0 0 X
+-
+Pressing the
+button, switches the display to Imperial units 1”.
+1. 0 0 0 0 0 X
+-
+Move the tool to point B, the coordinates in Imperial units are 2”.
+2. 0 0 0 0 0 X
+-
+Pressing the

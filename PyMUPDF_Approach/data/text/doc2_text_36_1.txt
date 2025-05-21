@@ -1,0 +1,42 @@
+-
+Perform the above steps to set the measuring direction of the linear encoder
+of the Y axes (Z if used)
+-
+After each setting, press the
+button and
+to move to the next step.
+-
+Setting the list of tools.
+0
+X
+t o o l
+-
+Select the desired machine by pressing the corresponding button.
+Button
+Machine
+0
+Multifunction milling machine
+1
+Universal milling machine
+2
+Process unloader
+3
+Lathe
+-
+Press the
+buttons and
+to move to the next step.
+-
+As you are using the lathe, select number 3, then the instrument will display
+only the X and Y dimensions necessary for turning operations
+
+ENT
+
+ENT
+
+ENT
+1
+0
+
+ENT
+fervi.com

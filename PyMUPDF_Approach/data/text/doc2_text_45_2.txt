@@ -1,0 +1,12 @@
+safety (at least 200 lux).
+Working close to the spindle
+Before starting work in the vicinity of the spindle, ALWAYS check that the machine is stopped.
+It is recommended to not extend the continued use of the machine for more than 10 minutes
+to avoid overheating the machine (which could damage the motor) and the equipment.
+1. Lift the movable protective screen of the spindle.
+2. Place the workpiece on the spindle and secure it by tightening the jaws, with the
+appropriate key.
+Insert the key into one of the holes with a square cross-section on the spindle, and to close
+the jaws, turn it clockwise (see Figure 33).
+Figure 33 – Spindle key.
+fervi.com

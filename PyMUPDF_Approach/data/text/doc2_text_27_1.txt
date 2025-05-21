@@ -1,0 +1,13 @@
+Confirm the white power light has turned on, found on the electrical panel (marked POWER).
+9.1.2 Electric and control panel buttons and lights
+Figure 17 – Electrical and control panel.
+The electrical panel has the following controls:
+
+RED MUSHROOM : Emergency button (red mushroom).
+
+WHITE WARNING LIGHT : Indicates the presence of voltage
+
+BLACK SELECTOR : Coolant pump selector
+
+GREEN BUTTON : Gears application button
+fervi.com

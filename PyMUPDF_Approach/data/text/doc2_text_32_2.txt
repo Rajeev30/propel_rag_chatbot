@@ -1,0 +1,11 @@
+to the left (towards the spindle), turn the handwheel clockwise and vice versa to move the
+quill to the right, rotate the handwheel anticlockwise.
+(T)
+Tailstock transverse adjusting screw: The screw allows for adjustments to the
+transverse centring of the tailstock. To move the tailstock forward (away from the operator),
+turn the screw clockwise and vice versa to move the tailstock backward (towards the
+operator), rotate the screw anticlockwise.
+T
+R
+S
+fervi.com

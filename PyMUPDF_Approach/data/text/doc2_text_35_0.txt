@@ -1,0 +1,41 @@
+MACHINES AND
+ACCESSORIES
+Page 36 of 84
+1- Self-test
+The display shows the following messages:
+Model
+Use with lathe*
+S D S 2
+5
+X
+L A T H E
+3
+5
+Y
+3
+5
+Z
+Axis number
+Resolution
+* "Lathe" is specified because the panel can be programmed for other tool machines.
+At the end of the self-diagnostic the display shows the following messages:
+It could be “INC” “ALE”
+“ZER”
+0. 0 0 0
+X
+A L E
+0. 0 0 0
+Y
+0. 0 0 0
+Z
+2 – Setting the system
+Pressing the
+button during the self-diagnostic process, starts the setting mode, which
+begins as soon as the first phase has finished.
+-
+Setting the X-axis resolution:
+current resolution
+5
+X
+X
+r e s l N

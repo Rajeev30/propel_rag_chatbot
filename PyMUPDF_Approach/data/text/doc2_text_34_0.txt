@@ -1,0 +1,14 @@
+MACHINES AND
+ACCESSORIES
+Page 35 of 84
+Data cable connections
+Pay attention to the correct connection of the data cables.
+If reversed they can cause erroneous readings by the digital display.
+The display can be rotated and tilted to allow the data to be viewed at any time.
+Rotation is achieved by simply moving it with one hand, and to adjust the angle, loosen the
+bolt located just below the power cord, tilt the panel and then retighten the bolt.
+Figure 27 – Panel adjustment
+9.4.1 Using the display
+When activating the panel, the management system performs a self-diagnostic routine.
+Figure 28 – Close-up of the display
+fervi.com

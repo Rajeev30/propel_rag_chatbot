@@ -1,0 +1,7 @@
+supported by | two | precision | nan | nan | bearings. | It | is self-centring, | nan | nan | with | nan | nan | nan
+three terminals (jaws) which permit the clamping of the workpiece | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan
+in a safe and stable way. For the opening / closing of the jaws it is | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan
+necessary to | insert | a special | nan | nan | key in the | nan | housing (square | nan | cross- | nan | nan | nan | nan
+section), on the outer contour of the spindle. For a more detailedexplanation on this subject, see section 10 of this mancual. | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan
+The danger zone, moveable interlocking guard (see figuvre 3), wihich.consists of a tinscreen plate with micro-safety switch. 4.2.3 Spindle speed adjustment leversThe panel for | in the | the vicinity of adjustment | nan | nan | the spindle, of the spindle | nan | is protected by rotation | speed | nan | a(see | nan | nan | Figure 3 – Spindle
+figure 4), is positioned at the left part of the machine, between the | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan

@@ -1,0 +1,12 @@
+MACHINES AND
+ACCESSORIES
+Page 27 of 84
+8.4.3 Open circuit test
+Manually rotate the hand wheels on the carriage's tool carrier slides and tailstock quills to
+verify that these move freely and without friction.
+Start the machine by turning the main switch to the position I and the activation lever to
+reverse the rotation of the spindle (see Figure 16) and make sure that the electric motor and
+spindle are working properly.
+Test the operation of the lever for reversing the rotation of the electric motor.
+Test the brake pedal, the spindle should slow down and eventually stop.
+Test the emergency stop button, the whole machine should stop.

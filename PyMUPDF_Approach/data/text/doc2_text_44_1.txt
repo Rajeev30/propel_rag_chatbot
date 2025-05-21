@@ -1,0 +1,32 @@
+negative if the value displayed is higher.
+The compensation range is ± 1.500 mm/m.
+Ex. If the useful length of the Y axes is 1000 mm and the panel at the end of travel of the
+carriage, reads 999.98 mm then S=(1000-999.98)/(1000/1000)=0.02 mm/m.
+So to enter the compensation value it is necessary to:
+-
+Select the Y axis by pressing the button
+, pressing the
+button displays the
+correction factor S previously set.
+s
+0. 0 5 0 Y
+-
+Enter the calculated value 0.02 by pressing in sequence the keys 0 . 0 2
+s
+0. 0 2 0 Y
+-
+Press the
+button to confirm the data.
+The
+linear
+error
+compensation
+can
+be
+performed
+by
+either
+displaying
+the
+absolute
+coordinates, or displaying the relative coordinates.

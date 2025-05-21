@@ -1,0 +1,38 @@
+button during the self-diagnostic process, starts the setting mode, which
+begins as soon as the first phase has finished.
+-
+Setting the X-axis resolution:
+current resolution
+5
+X
+X
+r e s l N
+In this way, the desired resolution is set for the X axis, using the numbers on the panel
+according to the following scheme:
+Button
+0
+1
+2
+5
+7
+8
+9
+Resolution (µm)
+10
+1
+2
+5
+0.1
+0.2
+0.5
+-
+After choosing the resolution press the
+button then
+to move to the next step.
+-
+To set the resolution of the Y axes and (Z if used), proceed as described above
+for the X axis
+
+ENT
+.
+fervi.com

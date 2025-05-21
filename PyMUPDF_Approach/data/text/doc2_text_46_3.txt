@@ -1,0 +1,7 @@
+11. Perform the machining of the workpiece, by moving the tool towards the workpiece, in
+rotation, using the handwheels that regulate the fine movement of the tool holder slides
+(ref. m / n in Figure 22). If necessary, move the nozzle of the cooling liquid closer to the
+area affected by the machining and operate the pump.
+12. When finished, move the tool away from the work piece, then stop the rotation of the
+spindle with the start lever.
+fervi.com

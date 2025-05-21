@@ -1,0 +1,80 @@
+Screw
+T999/D016
+Main screw
+T999/D081
+Lid
+T999/D019
+Feed rod
+T999/D082
+Left table support
+T999/D022
+Shaft
+T999/D083
+Right table support
+T999/D023
+Spacer
+T999/D084
+Lid
+T999/D024
+Shaft
+T999/D085
+Screw
+T999/D025
+Rod
+T999/D086
+Screw
+T999/D026
+Ring
+T999/D087
+Lid
+T999/D027
+Spacer
+T999/D088
+Screw
+T999/D028
+Key
+T999/D089
+Support
+T999/D029
+Oil cup
+T999/D090
+Screw
+T999/D039
+Knob
+T999/D091
+Tin plate
+T999/D040
+Plug
+T999/D092
+Support
+T999/D041
+Plug
+T999/D093
+Shaft
+T999/D041
+Plug
+T999/D094
+Elastic pin
+T999/D042
+Screw
+T999/D095
+Rod
+T999/D043
+Protective device
+T999/D096
+Lid
+T999/D044
+Locking nut
+T999/D097
+Nut
+T999/D045
+Screw
+T999/D098
+Elastic pin
+T999/D046
+Screw
+T999/D099
+Pedal arm
+T999/D047
+Screw
+T999/D100

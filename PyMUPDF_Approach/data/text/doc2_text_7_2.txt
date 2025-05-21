@@ -1,0 +1,11 @@
+the life of the tools themselves.
+16. Do not pick up moving tools or other moving parts. To stop the moving parts on the
+machine, always only use the stop command device.
+17. Before performing any measurement of the workpiece mounted on the spindle, turn the
+motor off, unplug it and wait for the spindle to stop.
+18. Do not remove the shavings with your hands, even at a standstill. To do this, use tongs
+or a palette knife.
+19. When the work tools need to be replaced or the speed needs to be changed, stop the
+motor and wait for the spindle to stop.
+20. Do not move away from the machine until the tools and other moving parts, have
+completely stopped.

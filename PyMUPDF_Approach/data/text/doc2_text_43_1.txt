@@ -1,0 +1,15 @@
+2 5. 4 0 0 X
+-
+Pressing the
+button, switches the display to Imperial units 1”.
+1. 0 0 0 0 0 X
+-
+Move the tool to point B, the coordinates in Imperial units are 2”.
+2. 0 0 0 0 0 X
+-
+Pressing the
+button, switches the display to Metric units 50.8 mm.
+5 0. 8 0 0 X
+M/
+M/
+fervi.com

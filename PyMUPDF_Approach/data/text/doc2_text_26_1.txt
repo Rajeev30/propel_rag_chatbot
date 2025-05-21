@@ -1,0 +1,7 @@
+Test the brake pedal, the spindle should slow down and eventually stop.
+Test the emergency stop button, the whole machine should stop.
+Operate the machine for a few minutes, checking the entire series of spindle speed change
+gears, starting with low speeds.
+Ejection of objects
+During the test run, no operator and no other person should be within range of the machine.
+fervi.com

@@ -1,0 +1,72 @@
+T999/E054
+Adjustment grub screw
+T999/E013
+Lever base
+T999/E055
+Adjustment grub screw
+T999/E014
+Lever
+T999/E056
+Adjustment grub screw
+T999/E015
+Stop
+T999/E057
+Adjustment grub screw
+T999/E016
+Screw
+T999/E058
+Adjustment grub screw
+T999/E017
+Micrometer
+T999/E059
+Nut
+T999/E018
+Switch
+T999/E060
+Nut
+T999/E019
+Switch
+T999/E061
+Washer
+T999/E020
+Collar
+T999/E062
+Screw
+T999/E022
+Washer
+T999/E063
+Spring
+T999/E023
+Nut
+T999/E064
+Oiler
+T999/E024
+Micrometer
+T999/E066
+Plug
+T999/E025
+Plate
+T999/E067
+Shaft gear
+T999/E026
+Plate
+T999/E069
+Bearing
+T999/E027
+Plate
+T999/E070
+Allen key
+T999/E028
+Screw
+T999/E071
+Lever
+T999/E029
+Washer
+T999/E072
+Handle
+T999/E030
+Turret base
+T999/E073
+Spacer
+T999/E031
+Adjustment screw

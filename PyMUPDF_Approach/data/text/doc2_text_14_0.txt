@@ -1,0 +1,23 @@
+MACHINES AND
+ACCESSORIES
+Page 15 of 84
+4.2.4 Feed speed adjustment panel
+The panel for the adjustment of the spindle rotation speed (see
+figure 5), is positioned at the left part of the machine, under the
+spindle speed adjustment panel. The lathe is provided with gears
+that
+can
+guarantee
+the
+considerable
+availability
+of
+feeds
+and
+threads (metric and inch). The selection of the steps is made using
+4 rotary knob switches which control the gear speed change. There
+is also a fifth knob for selecting the feed direction of the carriage.
+Figure 5 – Speed
+adjustment.
+4.2.5 Tool holder carriage
+The carriage sliding along the rails of the bed is used to hold,

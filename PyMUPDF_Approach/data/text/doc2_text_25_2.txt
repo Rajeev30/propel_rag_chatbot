@@ -1,0 +1,11 @@
+If the bubble moves, adjust the adjustable feet until it reaches a uniform level throughout the
+entire course of the carriage.
+Periodically check these measurements (at least every six months).
+Levelling the machine perfectly is one of the first and most essential steps to carry
+out before using the machine.
+8.4 Operations before starting the machine.
+8.4.1 Lubrication and greasing
+Before you start the machine, it should be lubricated and greased as described in section
+11.1, on "Lubrication".
+8.4.2 Connection to the power supply network
+Connect the power supply cable to the terminal inside the electrical cabinet. Connect the

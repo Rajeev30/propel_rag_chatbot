@@ -1,0 +1,82 @@
+Lever
+T999/A076
+Screw
+T999/A026
+Gear with 40 Teeth
+T999/A077
+Screw
+T999/A028
+Support
+T999/A078
+Plug
+T999/A029
+Half nut
+T999/A079
+Plug
+T999/A030
+Worm
+T999/A060
+Plug
+T999/A031
+Gear with 22 Teeth
+T999/A081
+Plug
+T999/A032
+Shaft
+T999/A082
+Plug
+T999/A033
+Gear 16 Teeth
+T999/A083
+Plug
+T999/A034
+Shaft
+T999/A084
+Oiler
+T999/A035
+Comparator shaft
+T999/A085
+Washer
+T999/A038
+Gear
+T999/A086
+Locking ring
+T999/A039
+Ring
+T999/A087
+Nut
+T999/A040
+Bar
+T999/A088
+Nut
+T999/A041
+Screw
+T999/A089
+Nut
+T999/A041
+Washer
+T999/A090
+Rivet
+T999/A042
+Washer
+T999/A091
+Rivet
+T999/A043
+Washer
+T999/A092
+O-ring
+T999/A044
+Washer
+T999/A095
+Key
+T999/A050
+Cap
+T999/A096
+Steel ball
+T999/A051
+Cap
+T999/A097
+Washer
+T999/A052
+Cap
+T999/A098

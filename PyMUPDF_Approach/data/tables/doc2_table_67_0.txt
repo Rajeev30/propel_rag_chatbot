@@ -1,0 +1,31 @@
+T999/C001 | Collar | T999/C046 Small pin
+T999/C002 | Collar | T999/C047 Cam
+T999/C003 | Back cover | T999/C048 Shaft
+T999/C004 | Back cover | T999/C050 Gear 51z
+T999/C005 | Pulley | T999/C051 Spacer
+T999/C006 | Pin | T999/C052 Shaft
+T999/C007 | Head | T999/C053 Gear 30 z
+T999/C008 | Front cover | T999/C054 Shaft
+T999/C009 | Lever | T999/C055 Shaft
+T999/C010 | Shaft support | T999/C056 Washer
+T999/C011 | Cover | T999/C057 Toothed shaft 17z
+T999/C012 | Body | T999/C059 Screw
+T999/C013 | Shaft | T999/C064 Switch m
+T999/C014 | Body | T999/C065 Switch
+T999/C015 | Pad | T999/C066 Switch
+T999/C016 | Hub | T999/C067 Spacer
+T999/C017 | Gear 37z | T999/C068 Fork
+T999/C018 | Washer | T999/C069 Fork
+T999/C019 T999/C020 T999/C021 | Washer Washer Gear 40z | T99.9/Cc073 T999/C074 T999/C075 GasketGasketGasket
+T999/C022 T999/C023 T999/C024 T999/C025 | Washer Gear 37z Locking nut Gear 43z viT999/C076 | GasketT999/C077 T999/C078 T999/C079 GasketGasketGasket
+T999/C026 | Gear 51z | T999/C080 Gasket
+T999/C028 T999/C029 T999/C030 T999/C031 T999/C032 | Sfhaft 16z r Washer Washer Shaft Washer | T999/C081 T999/C084 T999/C085 T999/C086 T999/C087 Oil level windowAllen key M4 x 12Allen key M4 x 12Allen key M4 x 12Allen key M4 x 12
+T999/C033 | Gear 21z | T999/C088 Allen key M4 x 12
+T999/C034 | Gear 29z | T999/C089 Allen key M4 x 12
+T999/C035 | Gear 46z | T999/C093 Screw M6 x 12
+T999/C036 | Gear 38z | T999/C095 Screw M8 x 8
+T999/C037 | Spacer | T999/C096 Screw M8 x 10
+T999/C038 | Gear 26z | T999/C097 Screw M8 x 12
+T999/C039 | Gear 34z | T999/C098 Screw M8 x 16
+T999/C040 | Gear 53z | T999/C099 Screw M8 x 40
+T999/C041 | Lid | T999/C100 Screw M4 x 8

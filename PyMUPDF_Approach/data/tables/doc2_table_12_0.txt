@@ -1,0 +1,20 @@
+ACCESSORIES | nan | nan | nan | nan | nan | nan | nan
+4.2 Description of the main parts | nan | nan | nan | nan | nan | nan | nan
+10 | nan | nan | nan | nan | nan | nan | nan
+11 | 12 | nan | nan | nan | nan | nan | nan
+nan | nan | 13 | nan | nan | nan | nan | nan
+8 9 | nan | nan | nan | nan | nan | nan | nan
+7 | nan | 14 | 15.0 | 17.0 | nan | nan | nan
+24 | nan | nan | nan | nan | nan | nan | nan
+nan | nan | nan | nan | nan | 16.0 | nan | nan
+6 | nan | nan | nan | nan | nan | nan | nan
+nan | nan | nan | nan | nan | nan | nan | 18.0
+5 | nan | nan | nan | nan | nan | nan | nan
+nan | nan | nan | nan | nan | nan | nan | 19.0
+4 | nan | om | nan | nan | nan | nan | 2021.0
+31 i.c2 | nan | 23 22 | nan | nan | nan | nan | nan
+Figure 2 – Main parts ofrthe gear head lathe (Art. T999/230V and T999/400V).1 2 3 4 5 Brake Carriage handwheel Workbench Speed switches Side cover e9 10 11 12 13 Protective device Halogen lamp Turret Coolant tube Longitudinal turret travel | 17 18 19 20 21 | Tailstock handwheelSupport barsLead screwTurning barBar for lathe activation | nan | nan | nan | nan | nan
+(mm) | nan | nan | nan | nan | nan | nan | nan
+6 Control panefl 14 Micrometer | 22 | Tray | nan | nan | nan | nan | nan
+7 Electrical controls 15 Tailstock block | 23 | Transmission activation lever; | nan | nan | nan | nan | nan
+8 3-jaw lathe spindle 16 Guides | 24 | Digital display | nan | nan | nan | nan | nan

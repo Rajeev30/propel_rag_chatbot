@@ -1,0 +1,26 @@
+T999/A012 | Shaft | T999/A065 Screw
+T999/A013 | Gear 60 Teeth | T999/A066 Screw
+T999/A014 | Shaft 18 Teeth | T999/A067 Screw
+T999/A015 | Gear | T999/A068 Screw
+T999/A016 | Shaft | T999/A069 Screw
+T999/A017 | Ring | T999/A070 Screw
+T999/A018 | Gear with 30 Teeth | T999/A071 Screw
+T999/A019 | Gear with 46 Teeth | T999/A072 Screw
+T999/A022 | Gear with 63 Teeth | T999/A073 Screw
+T999/A023 | Ring | T999/A074 Screw
+T999/A024 | Selector | T999/A075 Screw
+T999/A025 | Lever | T999/A076 Screw
+T999/A026 | Gear with 40 Teeth | T999/A077 Screw m
+T999/A028 | Support | T999/A078 Plug
+T999/A029 | Half nut | T999/A079 Plug
+T999/A030 | Worm | T999/A060 Pluog
+T999/A031 | Gear with 22 Teeth | T999/A081 Plug
+T999/A032 | Shaft | T999/A082 Plug
+T999/A033 | Gear 16 Teeth | T999/Ac083 Plug
+T999/A034 T999/A035 T999/A038 | Shaft Comparator shaft Gear | iT99.9/A084 T999/A085 T999/A086 OilerWasherLocking ring
+T999/A039 T999/A040 T999/A041 | Ring Bar Screw v | T999/A087 T999/A088 T999/A089 NutNutNut
+T999/A041 T999/A042 | Washer r Washer | T999/A090 T999/A091 RivetRivet
+T999/A043 | Washer | T999/A092 O-ring
+T999/A044 | Washer | T999/A095 Key
+T999/A050 T999/A051 | Cfap Cap | T999/A096 T999/A097 Steel ballWasher
+T999/A052 | Cap | T999/A098 Screw

@@ -1,0 +1,14 @@
+closed compartments (vans, trucks etc.) or possibly covered with tarpaulin.
+7.3 Warehouse storage
+In the event that the machine is to be stored and unused for some time before being put into
+service again, proceed as follows:
+1. Disconnect the power supply cable;
+2. Protect the machined parts (such as the guides, the carriage and the tool holder slides,
+spindle, the tailstock quill etc..) with protective liquid and/or grease;
+3. Store in a dry place, free from dust and contaminating agents. Climatic conditions
+recommended for storage:
+Temperature: - 15° / + 55° C;
+Humidity: 95% (non-condensing).
+Shock Protection
+Make sure the Lathe is protected from knocks and vibrations.
+fervi.com

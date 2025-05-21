@@ -1,0 +1,16 @@
+section), on the outer contour of the spindle. For a more detailed
+explanation on this subject, see section 10 of this manual.
+The danger zone, in the vicinity of the spindle, is protected by a
+moveable interlocking guard (see figure 3), which consists of a tin
+screen plate with micro-safety switch.
+Figure 3 – Spindle
+4.2.3 Spindle speed adjustment levers
+The panel for the adjustment of the spindle rotation speed (see
+figure 4), is positioned at the left part of the machine, between the
+spindle and the feeding speed change gearbox. It is equipped with
+two levers for selection of the desired rotation speed, depending on
+the type of processing and the material.
+Figure
+4
+–
+Speed
