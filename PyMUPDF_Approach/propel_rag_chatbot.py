@@ -43,7 +43,7 @@ import base64, mimetypes, uuid, os, time
 from tqdm import tqdm
 import openai                     # v1.14+
 from langchain_openai import OpenAIEmbeddings
-from langchain_pinecone import PineconeVectorStore
+# from langchain_pinecone import PineconeVectorStore
 import pinecone 
 
 load_dotenv()                           
