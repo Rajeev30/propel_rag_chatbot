@@ -610,7 +610,7 @@ from pathlib import Path
 
 # Vector store
 vectorstore = PineconeVectorStore(
-    pinecone_index = idx,
+    index = idx,
     embedding=embeddings,
     namespace="v1",
     text_key="text"
