@@ -1,77 +1,30 @@
-# ─── PREVENT STREAMLIT/TORCH RUNTIME ERRORS ───────────────────────
-import os
-os.environ["STREAMLIT_SERVER_RUN_ON_SAVE"] = "false"
-os.environ["STREAMLIT_WATCHER_TYPE"] = "none"  
-import nest_asyncio
-import asyncio
-nest_asyncio.apply()
-asyncio.set_event_loop_policy(asyncio.DefaultEventLoopPolicy())
-
-import types, sys
-try:
-    import torch
-    if not isinstance(torch.classes, types.ModuleType):
-        dummy = types.ModuleType("torch.classes")
-        dummy.__path__ = []
-        torch.classes = dummy
-        sys.modules["torch.classes"] = dummy
-except Exception as e:
-    print(f"[patch] torch patch skipped: {e}")
-# ──────────────────────────────────────────────────────────────────
-
 import re, pytesseract
 import spacy, csv, mimetypes
+nlp = spacy.load("en_core_web_sm")
+import openai
 import os
 from dotenv import load_dotenv
-from pathlib import Path
-import fitz  # PyMuPDF
+load_dotenv()                           # expects .env in the repo root
+
+OPENAI_API_KEY  = os.getenv("OPENAI_API_KEY")
+PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
+PINECONE_ENV     = os.getenv("PINECONE_ENV")  # e.g. "gcp-starter"
 import os, base64
 from pathlib import Path
 from tqdm import tqdm
+
 import fitz                         # PyMuPDF 2.0+
 import tabula                       # needs Java;  pip install tabula-py jpype1
 from langchain.text_splitter import RecursiveCharacterTextSplitter
+
 from pathlib import Path
 import os, base64, json, fitz, pdfplumber
 from tqdm import tqdm
 import tabula
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from io import BytesIO
-from PIL import Image
-import imagehash
-import base64, mimetypes, uuid, os, time
-from tqdm import tqdm
-import openai                     # v1.14+
-from langchain_openai import OpenAIEmbeddings
-# from langchain_pinecone import PineconeVectorStore
-import pinecone 
-
-load_dotenv()                           
-
-OPENAI_API_KEY  = os.getenv("OPENAI_API_KEY")
-PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
-PINECONE_ENV     = os.getenv("PINECONE_ENV")  # e.g. "gcp-starter"
-
-from pinecone import Pinecone
-pc = Pinecone(api_key=PINECONE_API_KEY)          #  <-- v3 client
-INDEX_NAME = "multimodal-manual"
-INDEX_HOST = "https://multimodal-manual-pybssqi.svc.aped-4627-b74a.pinecone.io"
-idx = pc.Index(name=INDEX_NAME, host=INDEX_HOST)  # idx is your handle
-
-nlp = spacy.load("en_core_web_sm")
-
-def load_pdf(path: Path) -> str:
-    doc = fitz.open(path)
-    text = []
-    for page in doc:
-        text.append(page.get_text("text"))
-    return "\n".join(text)
-
-raw_text = load_pdf(Path("PyMUPDF_Approach/doc2.pdf"))
-
 
 # ---------- CONFIG ----------
-PDF_PATH  = Path("PyMUPDF_Approach/doc2.pdf")
+PDF_PATH  = Path("doc2.pdf")
 BASE_DIR  = Path("data")
 DIAGRAM_THRESHOLD = 0.60   # % of page area to be considered full-page diagram
 LOGO_THRESHOLD    = 0.10   # % of page area under which we skip as logo/ornament
@@ -102,15 +55,19 @@ if Path(CAPTION_CACHE_FILE).exists():
 else:
     CAPTION_CACHE = {}
 
-def caption_image_cached(path: Path) -> str:
-    key = str(path.resolve())
-    if key in CAPTION_CACHE:
-        return CAPTION_CACHE[key]
-    # --- call your GPT-4o vision captioner here ---
-    caption = "[CAPTION]"  # placeholder
-    CAPTION_CACHE[key] = caption
-    Path(CAPTION_CACHE_FILE).write_text(json.dumps(CAPTION_CACHE, indent=2))
-    return caption
+# def caption_image_cached(path: Path) -> str:
+#     key = str(path.resolve())
+#     if key in CAPTION_CACHE:
+#         return CAPTION_CACHE[key]
+#     # --- call your GPT-4o vision captioner here ---
+#     caption = "[CAPTION]"  # placeholder
+#     CAPTION_CACHE[key] = caption
+#     Path(CAPTION_CACHE_FILE).write_text(json.dumps(CAPTION_CACHE, indent=2))
+#     return caption
+
+from io import BytesIO
+from PIL import Image
+import imagehash
 
 # Global trackers
 HASH_COUNTS = {}
@@ -126,6 +83,7 @@ def pixmap_to_pil(pix: fitz.Pixmap) -> Image.Image:
     except Exception as e:
         print(f"[warn] pixmap_to_pil failed: {e}")
         return None
+
 
 def should_skip_pil_image(pil_img: Image.Image, min_repeat: int = 3) -> bool:
     """Decide whether to skip an image based on perceptual hash frequency"""
@@ -171,7 +129,120 @@ def tag_special_chunks(txt:str)->str:
         if txt.upper().startswith(tag):
             return f"[{tag}] {txt}"
     return txt
+# from pathlib import Path
+import base64, mimetypes, uuid, os, time
+# from tqdm import tqdm
 
+import openai                     # v1.14+
+from langchain_openai import OpenAIEmbeddings
+from pinecone import Pinecone, ServerlessSpec
+
+# openai.api_key      = os.getenv("OPENAI_API_KEY")
+# PINECONE_API_KEY    = os.getenv("PINECONE_API_KEY")
+
+# ── embedding & chat models (adjust if your account differs) ────────────
+EMBED_MODEL = "text-embedding-3-large"    # 1536-D, GPT-4 family
+CHAT_MODEL  = "gpt-4o-mini"               # vision-capable
+
+embeddings = OpenAIEmbeddings(model=EMBED_MODEL)
+
+PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")  # keep this
+
+pc = Pinecone(api_key=PINECONE_API_KEY)
+index_name = "multimodal-manual"
+
+if index_name not in pc.list_indexes().names():
+    pc.create_index(
+        name=index_name,
+        dimension=1536,  # or embeddings.embedding_dimension
+        metric="cosine",
+        spec=ServerlessSpec(cloud="aws", region="us-east-1")
+    )
+
+index = pc.Index(index_name)
+
+from textwrap import dedent   # NEW
+
+def img_to_data_uri(path: Path) -> str:
+    mime, _ = mimetypes.guess_type(path)
+    b64 = base64.b64encode(path.read_bytes()).decode()
+    return f"data:{mime or 'image/png'};base64,{b64}"
+
+# ---------- IMPROVED CAPTIONER ---------- #
+def build_caption_prompt(heading: str, fig_title: str) -> str:          # NEW
+    """Return a richer prompt that ties the image to its section."""
+    return dedent(f"""
+        You are captioning an illustration from a machine user manual.
+
+        • Section heading: {heading or 'N/A'}
+        • Figure title  : {fig_title or 'N/A'}
+
+        TASK:
+        1. Write ONE sentence (≤35 words) saying what the figure shows **and** why it matters here.
+        2. Start the sentence with “[{fig_title or 'Figure'}]”.
+        Be literal, concise, no assumptions.
+    """).strip()
+
+
+def caption_image(
+    path: Path,
+    heading: str = "",                 # NEW
+    fig_title: str = "",               # NEW
+    snippet: str = "",                 # NEW
+    retry: int = 3
+) -> str:
+    """Return a single-sentence caption that includes section context."""
+    data_uri = img_to_data_uri(path)
+
+    for attempt in range(retry):
+        try:
+            resp = openai.chat.completions.create(
+                model=CHAT_MODEL,
+                messages=[{
+                    "role": "user",
+                    "content": [
+                        {"type": "text",
+                         "text": build_caption_prompt(heading, fig_title)},
+                        {"type": "image_url", "image_url": {"url": data_uri}},
+                        {"type": "text", "text": snippet[:400]}             # NEW
+                    ]
+                }],
+                max_tokens=80                                    # more room
+            )
+            return resp.choices[0].message.content.strip()
+        except openai.RateLimitError:
+            wait = 2 ** attempt
+            print(f"rate-limited, retrying in {wait}s"); time.sleep(wait)
+
+    return "unavailable caption"
+import json
+
+caption_cache_file = "captions_cache.json"
+caption_cache = {}
+if Path(caption_cache_file).exists():
+    caption_cache = json.loads(Path(caption_cache_file).read_text())
+
+def caption_image_cached(path: Path, **kwargs) -> str:          # CHANGED
+    """
+    Same API as before, but now forwards heading/fig_title/snippet.
+    Usage:
+        caption = caption_image_cached(
+            img_path,
+            heading=current_h,
+            fig_title=fig_title,
+            snippet=local_snippet
+        )
+    """
+    key = str(path.resolve())            # keep cache by file path only
+    if key in caption_cache:
+        return caption_cache[key]
+
+    caption = caption_image(path, **kwargs)
+    print("Caption:", caption)
+
+    caption_cache[key] = caption
+    Path(caption_cache_file).write_text(json.dumps(caption_cache, indent=2))
+    return caption
 # 3 · main extractor --------------------------------------------
 def extract_pdf(pdf_path: Path):
     ensure_dirs()
@@ -179,6 +250,16 @@ def extract_pdf(pdf_path: Path):
 
     items = []
     doc   = fitz.open(pdf_path)
+
+    def local_snippet(page_text: str, fig_title: str, span: int = 120) -> str:
+        if not fig_title:
+            return ""
+        idx = page_text.find(fig_title)
+        if idx == -1:
+            return ""
+        start = max(idx - span, 0)
+        end   = idx + len(fig_title) + span
+        return page_text[start:end].replace("\n", " ")
 
     for page_idx in tqdm(range(len(doc)), desc="Processing pages"):
         page = doc[page_idx]
@@ -199,6 +280,11 @@ def extract_pdf(pdf_path: Path):
             ocr_txt = pytesseract.image_to_string(Image.open(BytesIO(ocr_img.tobytes()))).strip()
             if len(ocr_txt) > 20:
                 raw_text = ocr_txt
+
+        # ---------- NEW: figure title & snippet ----------
+        m = re.search(r"(Figure\s+\d+\s*[\–\-—]\s*[^\n]{5,80})", raw_text)
+        fig_title = m.group(1).strip() if m else ""
+        snippet   = local_snippet(raw_text, fig_title)
 
         # ---------- Table extraction ----------
         # ---------- Table extraction with fallback ----------
@@ -277,7 +363,9 @@ def extract_pdf(pdf_path: Path):
                 "page": page_idx,
                 "type": "table",
                 "text": table_text,
-                "path": str(f)
+                "path": str(f),
+                "section": current_h,              # NEW
+                "figure_title": fig_title   
             })
 
             m = re.search(r"(Table\s+\d+\s*[\–\-—]\s*[^\n]{5,80})", raw_text)
@@ -327,7 +415,14 @@ def extract_pdf(pdf_path: Path):
             pix = page.get_pixmap(matrix=fitz.Matrix(PIXMAP_ZOOM, PIXMAP_ZOOM))
             f = BASE_DIR / "page_images" / f"diagram_page_{page_idx:03d}.png"
             save_pixmap(pix, f)
-            caption = caption_image_cached(f)
+            caption = caption_image_cached(
+                f,
+                heading=current_h,
+                fig_title=fig_title,
+                snippet=snippet
+            )
+
+
             # If page text is too short, pull context from neighbors
             related = ""
             if len(raw_text) <= TEXT_EMPTY_LIMIT:
@@ -337,12 +432,15 @@ def extract_pdf(pdf_path: Path):
                         if len(adj_text) >= NEIGHBOR_MIN_CHARS:
                             related += f"\n[[Neighbor page {adj_idx}]]\n" + adj_text
             items.append({
-            "page": page_idx,
-            "type": "page",
-            "path": str(f),
-            "text": caption,          # the GPT-4o caption
-            "related_text": related.strip()  # may be empty if nothing useful
+                "page": page_idx,
+                "type": "page",
+                "path": str(f),
+                "text": caption,
+                "related_text": related.strip(),
+                "section": current_h,              # NEW
+                "figure_title": fig_title          # NEW
             })
+
             print(f"✅ Detected composite diagram on page {page_idx} covering {round(composite_area / page_area * 100, 2)}%")
 
             m = re.search(r"(Figure\s+\d+\s*[\–\-—]\s*[^\n]{5,80})", raw_text)
@@ -379,11 +477,20 @@ def extract_pdf(pdf_path: Path):
                 fname = BASE_DIR / "images" / f"{pdf_path.stem}_img_{page_idx}_{idx}_{xref}.png"
                 save_pixmap(pix, fname)
 
+                caption = caption_image_cached(
+                    fname,
+                    heading=current_h,
+                    fig_title=fig_title,
+                    snippet=snippet
+                )
+
                 items.append({
                     "page": page_idx,
                     "type": "image",
                     "path": str(fname),
-                    "text": caption_image_cached(fname)
+                    "text": caption,
+                    "section": current_h,              # NEW
+                    "figure_title": fig_title          # NEW
                 })
 
                 m = re.search(r"(Figure\s+\d+\s*[\–\-—]\s*[^\n]{5,80})", raw_text)
@@ -407,69 +514,6 @@ first_text  = next(i for i in items if i["type"] == "text")
 first_image = next(i for i in items if i["type"] == "image" or i["type"] == "page")
 print("\n[Sample text]", first_text["text"][:200])
 print("[Sample image]", first_image["path"])
-
-
-openai.api_key      = os.getenv("OPENAI_API_KEY")
-PINECONE_API_KEY    = os.getenv("PINECONE_API_KEY")
-
-# ── embedding & chat models (adjust if your account differs) ────────────
-EMBED_MODEL = "text-embedding-3-large"    # 1536-D, GPT-4 family
-CHAT_MODEL  = "gpt-4o-mini"               # vision-capable
-
-embeddings = OpenAIEmbeddings(model=EMBED_MODEL)
-
-PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")  # keep this
-
-# ❸  --- get a handle you can use for upserts / queries
-index = idx          # ←  the handle you created at the top
-
-
-def img_to_data_uri(path: Path) -> str:
-    mime, _ = mimetypes.guess_type(path)
-    b64 = base64.b64encode(path.read_bytes()).decode()
-    return f"data:{mime or 'image/png'};base64,{b64}"
-
-def caption_image(path: Path, retry: int = 3) -> str:
-    """Return a single-sentence literal caption for the image."""
-    data_uri = img_to_data_uri(path)
-    for attempt in range(retry):
-        try:
-            resp = openai.chat.completions.create(
-                model=CHAT_MODEL,
-                messages=[{
-                    "role": "user",
-                    "content": [
-                        {"type": "text",
-                         "text": "Describe this image in one concise sentence, no interpretation."},
-                        {"type": "image_url", "image_url": {"url": data_uri}}
-                    ]
-                }],
-                max_tokens=60
-            )
-            return resp.choices[0].message.content.strip()
-        except openai.RateLimitError:
-            wait = 2 ** attempt
-            print(f"rate-limited, retrying in {wait}s"); time.sleep(wait)
-    return "unavailable caption"
-
-import json
-
-caption_cache_file = "captions_cache.json"
-caption_cache = {}
-
-# Load existing cache if present
-if Path(caption_cache_file).exists():
-    caption_cache = json.loads(Path(caption_cache_file).read_text())
-
-def caption_image_cached(path: Path) -> str:
-    key = str(path)
-    if key in caption_cache:
-        return caption_cache[key]
-    caption = caption_image(path)  # your existing GPT-4 captioner
-    caption_cache[key] = caption
-    Path(caption_cache_file).write_text(json.dumps(caption_cache, indent=2))
-    return caption
-
 
 docs, meta, ids = [], [], []
 
@@ -542,6 +586,7 @@ for obj in tqdm(items, desc="Preparing docs + metadata"):
         ids.append(str(uuid.uuid4()))
 
 
+
 # ── embed in batches ───────────────────────────────────────────
 batch = 100
 vectors = []
@@ -557,10 +602,8 @@ to_upsert = [
     )
     for i in range(len(docs))
 ]
-
-index = idx   # reuse the handle
-
-        # ← already created with dim=3072
+pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
+index = pc.Index("multimodal-manual")          # ← already created with dim=3072
 
 def payload_size(batch):
     return len(json.dumps(batch).encode())
@@ -580,14 +623,13 @@ for tup in tqdm(to_upsert):
 if batch:
     index.upsert(batch, namespace="v1")
 
-# # ------------------------------------------------------------
-# # 4 · VERIFY
-# # ------------------------------------------------------------
-# stats = index.describe_index_stats(namespace="v1")
-# print("\n✅  Done!  Pinecone now holds:")
-# print(f"   • vectors : {stats['namespaces']['v1']['vector_count']}")
-# print(f"   • dim      : {stats['dimension']}")
-
+# ------------------------------------------------------------
+# 4 · VERIFY
+# ------------------------------------------------------------
+stats = index.describe_index_stats(namespace="v1")
+print("\n✅  Done!  Pinecone now holds:")
+print(f"   • vectors : {stats['namespaces']['v1']['vector_count']}")
+print(f"   • dim      : {stats['dimension']}")
 from collections import Counter
 
 def extract_table_keywords(meta, limit=20):
@@ -600,24 +642,24 @@ def extract_table_keywords(meta, limit=20):
     top_keywords = [kw for kw, _ in keyword_counts.most_common(limit)]
     return top_keywords
 
-from langchain_community.vectorstores import Pinecone as PineconeVectorStore
+from langchain_pinecone import PineconeVectorStore
 from langchain_openai import ChatOpenAI
 from langchain.chains import ConversationalRetrievalChain
 from langchain.memory import ConversationBufferMemory
-# from IPython.display import display, Image
+from IPython.display import display, Image
 from pathlib import Path
 
 
 # Vector store
 vectorstore = PineconeVectorStore(
-     pinecone_index = idx,
+    index=index,
     embedding=embeddings,
     namespace="v1",
     text_key="text"
 )
 
 # Retriever
-retriever = vectorstore.as_retriever(search_kwargs={"k": 20})
+retriever = vectorstore.as_retriever(search_kwargs={"k": 5})
 
 # LLM
 llm = ChatOpenAI(model_name="gpt-4o", temperature=0.2)
@@ -638,79 +680,45 @@ chat_rag = ConversationalRetrievalChain.from_llm(
     output_key="answer"
 )
 
-from collections import Counter
 
-def should_prioritise_tables(query: str,
-                             retriever,
-                             top_k: int = 12,
-                             min_tables: int = 3,
-                             min_ratio: float = 0.35) -> bool:
-    """
-    Probe the vector store with the user query.  
-    If a significant share of the top-k hits are tables,
-    return True → switch to table-first logic.
-    """
-    hits = retriever.get_relevant_documents(query, k=top_k)
+def ask(query):
+    def is_table_query(q):
+        table_keywords = extract_table_keywords(meta)
+        return any(kw in q.lower() for kw in table_keywords)
 
-    table_hits = [h for h in hits if h.metadata.get("type") == "table"]
-    ratio      = len(table_hits) / max(1, len(hits))         # avoid /0
+    table_mode = is_table_query(query)
 
-    return len(table_hits) >= min_tables or ratio >= min_ratio, hits
-
-from pathlib import Path
-from PIL import Image
-
-from pathlib import Path
-
-def ask(query: str):
-    """
-    Run a conversational-RAG query and return
-      answer_text, [source_sentence], image_path_or_None
-    """
-    # ── 0. reset working vars every call ─────────────────────────────
-    res          = None                # <- guarantees fresh answer
-    source_docs  = []
-    image_path   = None
-
-    # ── 1. decide whether to prefer tables ──────────────────────────
-    table_mode, probe_docs = should_prioritise_tables(
-        query=query,
-        retriever=retriever
-    )
-
+    # Branch 1: If it's a table query
     if table_mode:
-        # Re-use the probe instead of querying twice
-        source_docs = [d for d in probe_docs if d.metadata.get("type") == "table"]
-        if not source_docs:                          # no pure tables? fall back
-            source_docs = probe_docs
-
-        context = "\n\n".join(d.page_content for d in source_docs)
-        sys_prompt = ("You are answering from a technical manual. "
-                      "Prioritise structured information (tables) when available.")
-        llm_reply = llm.invoke([
-            {"role": "system", "content": sys_prompt},
-            {"role": "user",   "content": f"{query}\n\nContext:\n{context}"}
-        ])
-        answer_text = llm_reply.content
-
+        all_docs = retriever.get_relevant_documents(query)
+        table_docs = [doc for doc in all_docs if doc.metadata.get("type") == "table"]
+        source_docs = table_docs[:5] if table_docs else all_docs[:5]
+        res = None  # ← ensure res is defined later
     else:
-        rag_out      = chat_rag.invoke({"question": query})
-        answer_text  = rag_out["answer"]
-        source_docs  = rag_out["source_documents"]
+        res = chat_rag.invoke({"question": query})
+        source_docs = res["source_documents"]
 
-    # ── 2. pick a representative image (first one in sources) ───────
-    for d in source_docs:
-        if d.metadata.get("type") in {"image", "page"} and \
-           Path(d.metadata["path"]).suffix.lower() in {".png", ".jpg", ".jpeg"}:
-            image_path = d.metadata["path"]
-            break
+    # Fallback LLM generation for table mode
+    if "source_docs" in locals() and isinstance(source_docs, list) and not res:
+        content_blob = "\n\n".join(doc.page_content for doc in source_docs)
+        system_prompt = "You are answering from a technical manual. Prioritize structured information when available, especially from tables."
+        llm_response = llm.invoke([
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": f"{query}\n\nRelevant context:\n{content_blob}"}
+        ])
+        res = {"answer": llm_response.content, "source_documents": source_docs}
 
-    # ── 3. craft one-line source sentence ───────────────────────────
-    pages = sorted({d.metadata.get("page") for d in source_docs
-                    if d.metadata.get("page") is not None})
-    if   not pages:           source_line = "No source page was identified."
-    elif len(pages) == 1:     source_line = f"See page {pages[0]} of the manual."
-    else:                     source_line = f"See pages {', '.join(map(str, pages))}."
+    # Find a top image to return
+    top_image_path = None
+    for doc in res["source_documents"]:
+        if doc.metadata.get("type") in {"image", "page"}:
+            path = doc.metadata.get("path")
+            if path and Path(path).suffix in {".png", ".jpg", ".jpeg"}:
+                top_image_path = path
+                break
 
-    return str(res), [source_line], image_path
+    # Final return
+    answer = res["answer"]
+    sources = [doc.metadata.get("path") for doc in res["source_documents"]]
 
+    return answer, sources, top_image_path
